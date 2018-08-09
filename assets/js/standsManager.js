@@ -1,13 +1,18 @@
 import * as Config from './modules/config.js';
 import * as Tools from './modules/tools.js';
+import {BookingManager} from "./bookingManager.js";
 
 export class StandsManager{
 
-    initProperties(){
+    initProperties(config){
+
+        this.bookingBtnContent = config && config.bookingBtnContent || 'Réserver un Vélo';
         this.standsCollection = [];
+
+        this.bookingManager = new BookingManager();
     }
 
-    constructor()
+    constructor(config=false)
     {
         this.initProperties();
         this.loadStands();
@@ -22,9 +27,13 @@ export class StandsManager{
             '<div class="station-detail-statut open">'+standDetails.status+'</div>' +
             '<div class="station-detail-adresse">'+standDetails.address+'</div> ' +
             '<div class="station-detail-available-bike-stand">'+standDetails.available_bike_stands+'</div> ' +
-            '<div class="station-detail-bike">'+standDetails.available_bikes+'</div>');
+            '<div class="station-detail-bike">'+standDetails.available_bikes+'</div>' +
+            '<div class="station-detail-booking">' +
+            '<button id="bookABikeBtn'+standDetails.number+'" data-stand-number="'+standDetails.number+'" class="btn big-btn">'+this.bookingBtnContent+'</button>' +
+            '</div>');
 
-        $('#StationDetailSection').html('').append(slideNode);
+        $('#standDetailSection').html('').append(slideNode);
+        this.bookingManager.addBookABikeEventListener('bookABikeBtn'+standDetails.number);
     }
 
     loadStands() {

@@ -18,6 +18,7 @@ export class SignaturePad{
         this.signatureLabel = config && config.signatureLabel || "Signature";
         this.btnAcceptLabel = config && config.btnAcceptLabel || "Signer";
         this.btnResetLabel = config && config.btnResetLabel || "Effacer";
+        this.signatureTitle = config && config.signatureTitle || "Afin de confirmer votre réservation, merci de signer ci-dessous";
     }
 
     /**
@@ -52,7 +53,8 @@ export class SignaturePad{
      * Permet la création des composants HTML
      */
     createHTMLSignaturePad(){
-        let signaturePadNode = Tools.htmlToElements('' +
+        let signaturePadNode = Tools.htmlToElements(
+            '<h3>'+this.signatureTitle+'</h3>' +
             '<div class="signatureLabel">' + this.signatureLabel + '</div>' +
             '<canvas id="'+this.canvasID.substring(1)+'" class="signatureCanvas"></canvas>' +
             '<div class="signatureControls">' +

@@ -30,7 +30,6 @@ export class GoogleMap {
     }
 
     /**
-     * @param containerID - {String} Nom du container à utiliser pour l'affichage
      * @param config - Permet d'injecter des configurations pour modifier le comportement par défaut
      * @param lazyStarting - Permet l'affichage et le chargement automatique des données de la map.
      */
