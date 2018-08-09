@@ -1,0 +1,4 @@
+# ignore config files
+*.apikeys.js
+images/
+.idea/
