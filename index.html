@@ -7,34 +7,58 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
     <link rel="stylesheet" href="./assets/css/style.css">
+
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
     <title>Vélo'v - Réservation</title>
     <style type="text/css">
+        .container-fluid{
+        }
+        html {
+            height:100%;
+        }
+        body {
+            min-height:100%;
+        }
         #map {
-            height: 1000px;
-            width: 100%;
-            float: left;
-            clear: both;
+            height:600px;
+            width: 1000px;
         }
     </style>
 </head>
 <body>
-<!--  -->
-<header>
-    <h1>Bienvenu sur la plateforme Velo-V</h1>
-</header>
-<div class="container">
-    <section id="slideshowSection">
-    </section>
-    <section id="mapSection">
-        <div id="map"></div>
-    </section>
-    <section id="bookingSection">
-        <figure id="signatureContainer">
+<div class="container-fluid">
+    <header class="row">
+        <h1>Bienvenue sur la plateforme Velo-V</h1>
+    </header>
 
-        </figure>
+    <section id="slideshowSection" class="row">
     </section>
+
+    <section id="mapSection" class="row">
+        <section id="map"></section>
+
+
+    <section id="bookingSection">
+
+            <h2 class="station-title">Station Sélectionnée</h2>
+
+            <div class="station-detail">
+
+                <div class="station-detail-number">#000</div>
+                <div class="station-detail-statut open">OPEN</div>
+                <div class="station-detail-name">Nom de la station</div>
+                <div class="station-detail-adresse">Rue marechal</div>
+                <div class="station-detail-available-bike-stand">20</div>
+                <div class="station-detail-bike">5</div>
+
+            </div>
+
+            <figure id="signatureContainer">
+            </figure>
+        </section>
+    </section>
+    <footer></footer>
 </div>
-<footer></footer>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB99Sd3rLJLWd7inCatYC5MMjXeCz7SNTk"></script>
 <script src="assets/js/markerclusterer.js"></script>
