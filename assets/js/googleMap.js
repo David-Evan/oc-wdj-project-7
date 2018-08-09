@@ -12,13 +12,16 @@ export class GoogleMap {
     initProperties(config){
         this.contract = config && config.contract || 'Lyon';
         this.MCImagePath = config && config.MCImagePath || './assets/images/markerclusterer/m';
-
         this.iconPath = config && config.iconPath || './assets/images/map_icons/';
         this.icon = config && config.icon || {  fullStand:          'stand-100.png',
                                                 threeQuarterStand:  'stand-75.png',
                                                 halfStand:          'stand-50.png',
                                                 quarterStand:       'stand-25.png',
                                                 emptyStand:         'stand-0.png'};
+
+        this.mapZoom = config && config.mapZoom || 13;
+        this.mapStartPosition = config && config.mapStartPosition || {lat: 45.76, lng: 4.84};
+        this.style = config && config.mapStyle || null;
 
         this.markersCollection = [];
         this.map = null;
@@ -27,13 +30,12 @@ export class GoogleMap {
     }
 
     /**
-     * Constructeur - Permet le chargement et le démmarage de la carte Google
+     * @param containerID - {String} Nom du container à utiliser pour l'affichage
      * @param config - Permet d'injecter des configurations pour modifier le comportement par défaut
      * @param lazyStarting - Permet l'affichage et le chargement automatique des données de la map.
      */
     constructor(config = false, lazyStarting = true) {
         this.initProperties(config);
-
         if (lazyStarting) {
             this.createMap();
             this.addMapsMarkers();
@@ -70,12 +72,9 @@ export class GoogleMap {
      */
     createMap () {
         this.map = new google.maps.Map(document.getElementById('map'), {
-                center: {
-                    lat: 45.76,
-                    lng: 4.84
-                },
-                zoom: 13,
-                minZoom: 11,
+                center: this.mapStartPosition,
+                zoom: this.mapZoom,
+                styles: this.style,
             });
     }
 
@@ -99,6 +98,7 @@ export class GoogleMap {
 
         marker.addListener('click', ()=> {
             this.map.setCenter(marker.position);
+            this.standManager.showStandDetails(marker.standId);
         });
 
         return marker;
@@ -129,4 +129,5 @@ export class GoogleMap {
                 this.markersCollection.push(this.createMarker(stand))
         );
     }
+
 }
