@@ -13,11 +13,10 @@ export class GoogleMap {
         this.contract = config && config.contract || 'Lyon';
         this.MCImagePath = config && config.MCImagePath || './assets/images/markerclusterer/m';
         this.iconPath = config && config.iconPath || './assets/images/map_icons/';
-        this.icon = config && config.icon || {  fullStand:          'stand-100.png',
-                                                threeQuarterStand:  'stand-75.png',
-                                                halfStand:          'stand-50.png',
-                                                quarterStand:       'stand-25.png',
-                                                emptyStand:         'stand-0.png'};
+        this.icon = config && config.icon || {  fileExtension:        '.png',
+                                                closedStand:          'icon-closed',
+                                                numberIcon :          'icon-',
+                                                moreAvailableBike :   'icon-x',};
 
         this.mapZoom = config && config.mapZoom || 13;
         this.mapStartPosition = config && config.mapStartPosition || {lat: 45.76, lng: 4.84};
@@ -39,6 +38,13 @@ export class GoogleMap {
             this.createMap();
             this.addMapsMarkers();
         }
+
+        this.removeLoadScreen();
+    }
+
+
+    removeLoadScreen(){
+        $('#loader').fadeOut(1600, ()=>$('#loader').remove());
     }
 
     /**
@@ -48,22 +54,17 @@ export class GoogleMap {
      */
     getIconForMaker(marker) {
 
-        let standCapacityRatio = (marker.standAvailableParks / marker.standCapacity);
-        let icon = null;
-        if(standCapacityRatio == 1)
-            icon = this.icon.emptyStand;
-        else if(standCapacityRatio == 0)
-            icon = this.icon.fullStand;
-        else if(standCapacityRatio <=0.35)
-            icon = this.icon.quarterStand;
-        else if(standCapacityRatio <=0.65)
-            icon = this.icon.halfStand;
-        else if(standCapacityRatio < 1)
-            icon = this.icon.threeQuarterStand;
+        let icon;
+        if(marker.standStatut = 'OPEN'){
+            if(marker.standAvailableBikes < 25)
+                icon = this.icon.numberIcon+marker.standAvailableBikes;
+            else
+                icon = this.icon.moreAvailableBike;
+        }
         else
-            icon = this.icon.halfStand;
+            icon = this.icon.closedStand;
 
-        return icon;
+        return icon + this.icon.fileExtension;
     }
 
     /**
@@ -74,6 +75,7 @@ export class GoogleMap {
                 center: this.mapStartPosition,
                 zoom: this.mapZoom,
                 styles: this.style,
+                gestureHandling: 'greedy',
             });
     }
 
@@ -108,7 +110,7 @@ export class GoogleMap {
      * @returns {MarkerClusterer}
      */
     showMakersCollection(){
-        return new MarkerClusterer(this.map, this.markersCollection, {imagePath: this.MCImagePath});
+        return new MarkerClusterer(this.map, this.markersCollection, imagePath: this.MCImagePath});
     }
 
     /**

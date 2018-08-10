@@ -1,0 +1,27 @@
+html {
+
+  height: 100vh;
+  overflow: hidden;
+
+}
+
+body {
+
+  	min-height: 100%;
+    font-size: 1.2em;
+  	font-family: 'Open Sans', sans-serif;
+
+    color: $global_textColor;
+}
+
+#map {
+	height: 100vh;
+	width: 100%;
+}
+
+#standInfoSection {
+	padding: 15px;
+	box-shadow: 7px 3px 3px white;
+	border: solid #ccc 1px;
+	margin-left: 10px;
+}

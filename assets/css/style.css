@@ -1,6 +1,118 @@
+html {
+  height: 100vh;
+  overflow: hidden;
+}
+
+body {
+  min-height: 100%;
+  font-size: 1.2em;
+  font-family: 'Open Sans', sans-serif;
+  color: #333;
+}
+
+#map {
+  height: 100vh;
+  width: 100%;
+}
+
+#standInfoSection {
+  padding: 15px;
+  box-shadow: 7px 3px 3px white;
+  border: solid #ccc 1px;
+  margin-left: 10px;
+}
+
 /*----------------------------*\
     MODULES
 \*----------------------------*/
 canvas {
   border: solid 1px black;
+}
+
+#loader {
+  padding-top: 10%;
+  background-color: #fff;
+  text-align: center;
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  z-index: 99999;
+}
+
+.loader-css {
+  width: 190px;
+  height: 190px;
+  margin: auto;
+  position: relative;
+  top: 15%;
+  text-align: center;
+}
+
+.lds-double-ring div {
+  position: absolute;
+  width: 190px;
+  height: 190px;
+  border-radius: 50%;
+  border: 16px solid #000;
+  border-color: #5b5b5b transparent #5b5b5b transparent;
+  -webkit-animation: lds-double-ring 4s linear infinite;
+  animation: lds-double-ring 4s linear infinite;
+}
+
+.lds-double-ring div:nth-child(2) {
+  width: 154px;
+  height: 154px;
+  top: 18px;
+  left: 18px;
+  border-color: transparent #e11f26 transparent #e11f26;
+  -webkit-animation: lds-double-ring_reverse 4s linear infinite;
+  animation: lds-double-ring_reverse 4s linear infinite;
+}
+
+.loader-text {
+  margin-top: 12%;
+}
+
+@keyframes lds-double-ring {
+  0% {
+    -webkit-transform: rotate(0);
+    transform: rotate(0);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@-webkit-keyframes lds-double-ring {
+  0% {
+    -webkit-transform: rotate(0);
+    transform: rotate(0);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes lds-double-ring_reverse {
+  0% {
+    -webkit-transform: rotate(0);
+    transform: rotate(0);
+  }
+  100% {
+    -webkit-transform: rotate(-360deg);
+    transform: rotate(-360deg);
+  }
+}
+
+@-webkit-keyframes lds-double-ring_reverse {
+  0% {
+    -webkit-transform: rotate(0);
+    transform: rotate(0);
+  }
+  100% {
+    -webkit-transform: rotate(-360deg);
+    transform: rotate(-360deg);
+  }
 }
