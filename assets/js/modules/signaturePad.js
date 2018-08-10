@@ -8,8 +8,9 @@ export class SignaturePad{
     /**
      * Initialise les propriétés de l'objet
      * @param config
+     * @param callbackFunction
      */
-    initProperties(config) {
+    initProperties(config, callbackFunction) {
         this.signaturePadID = null;
         this.canvasID = null; // ID de <canvas>
         this.canvasElement = null; // Element JS canvas
@@ -19,16 +20,19 @@ export class SignaturePad{
         this.btnAcceptLabel = config && config.btnAcceptLabel || "Signer";
         this.btnResetLabel = config && config.btnResetLabel || "Effacer";
         this.signatureTitle = config && config.signatureTitle || "Afin de confirmer votre réservation, merci de signer ci-dessous";
+
+        this.callbackFunction = callbackFunction;
     }
 
     /**
      * Créée une nouvelle zone de signature.
      * @param containerID {string} - ID du container à utiliser pour la création de la zone.
+     * @param callbackFunction - {callback function} - Fonction à executer après validation de la signature.
      * @param config - {json}- Données de config à utiliser. Si false, la config par defaut sera utilisée
      * @param lazyStarting {Boolean} - Permet la création et le démmarage automatique du composant
      */
-    constructor(containerID, config = false, lazyStarting = true){
-        this.initProperties(config);
+    constructor(containerID, callbackFunction, config = false, lazyStarting = true){
+        this.initProperties(config, callbackFunction);
         this.containerID = '#'+containerID;
 
         if(lazyStarting)
@@ -86,7 +90,7 @@ export class SignaturePad{
      */
     addButtonEventsListener() {
         $(this.signaturePadID + ' .btn.reset').on('click',()=> this.resetSignaturePad());
-        $(this.signaturePadID + ' .btn.sign').on('click',()=> this.callbackFunction());
+        $(this.signaturePadID + ' .btn.sign').on('click',()=> this.validateSignaturePad());
     }
 
     /**
@@ -135,10 +139,14 @@ export class SignaturePad{
     }
 
     /**
-     * Fonction de rappel appelé après avoir "signer" le formulaire
+     * Fonction appelé après avoir "signé" le formulaire
+     * Exécute la fonction de callback après vérification du contenu.
      */
-    callbackFunction() {
+    validateSignaturePad(){
+
         this.resetSignaturePad();
+
+        this.callbackFunction();
     }
 
     /*--- Getter / Setter ---*/
