@@ -2,8 +2,15 @@ import * as Config from './modules/config.js';
 import * as Tools from './modules/tools.js';
 import {BookingManager} from "./bookingManager.js";
 
+/**
+ * Gestionnaire de Station
+ */
 export class StandsManager{
 
+    /**
+     * Initialise les propriétés de l'objet
+     * @param config
+     */
     initProperties(config){
 
         this.bookingBtnContent = config && config.bookingBtnContent || 'Réserver un Vélo';
@@ -12,12 +19,20 @@ export class StandsManager{
         this.bookingManager = new BookingManager();
     }
 
+    /**
+     * Assure le chargement de la configuration et lance la récupération des données
+     * @param config
+     */
     constructor(config=false)
     {
         this.initProperties(config);
         this.loadStands();
     }
 
+    /**
+     * Affiche les détails d'une station de vélo
+     * @param standID {int} - ID de la station de vélo
+     */
     showStandDetails(standID){
         const standDetails = this.standsCollection.find( s => s.number === standID);
 
@@ -38,6 +53,10 @@ export class StandsManager{
     }
 
 
+    /**
+     * TODO : Asynchronisme
+     * Permet le chargement des données au sein de standsCollection
+     */
     loadStands() {
         let APIurl = Config.Stands.API_GetAllsStandsURL.replace('{contract_name}', Config.Stands.contract)
             .replace('{api_key}', Config.JCDecauxAPIKey);
