@@ -181,7 +181,7 @@ export const GoogleMap = {
             "elementType": "geometry",
             "stylers": [
                 {
-                    "color": "#c9c9c9"
+                    "color": "#abcdd4"
                 }
             ]
         },
