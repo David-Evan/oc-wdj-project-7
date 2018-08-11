@@ -22,6 +22,26 @@ body {
   margin-left: 10px;
 }
 
+button {
+  background-color: #e11f26;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #ea6267;
+}
+
+button:focus {
+  outline: none;
+}
+
+.container-fluid, .row, .container {
+  margin: 0;
+  padding: 0;
+}
+
 /*----------------------------*\
     MODULES
 \*----------------------------*/
@@ -34,9 +54,10 @@ canvas {
   background-color: #fff;
   text-align: center;
   position: absolute;
+  position: absolute;
+  height: 100%;
   width: 100%;
-  height: 100vh;
-  z-index: 99999;
+  z-index: 10000;
 }
 
 .loader-css {
@@ -70,7 +91,41 @@ canvas {
 }
 
 .loader-text {
-  margin-top: 12%;
+  position: relative;
+  top: 220px;
+}
+
+#error {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  z-index: 10000;
+  background-color: rgba(0, 0, 0, 0.7);
+  top: 0;
+}
+
+.errorBox {
+  min-height: 25%;
+  margin: auto;
+  border: solid 3px #333;
+  border-radius: 15px;
+  padding: 20px;
+  text-align: center;
+  background: #fff;
+  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.35);
+}
+
+.errorBox-button {
+  margin-top: 35px;
+  margin-bottom: 20px;
+}
+
+.errorBox-title {
+  margin-bottom: 25px;
+}
+
+.errorBox-message i {
+  font-size: 0.8em;
 }
 
 @keyframes lds-double-ring {

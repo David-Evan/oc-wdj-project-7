@@ -25,3 +25,19 @@ body {
 	border: solid #ccc 1px;
 	margin-left: 10px;
 }
+
+
+button{
+  background-color: $global_primaryColor;
+  border : none;
+  color: #fff;
+  cursor: pointer;
+  &:hover  {background-color: $global_primaryColorLight;}
+  &:focus {outline: none;}
+}
+
+// Reset bootstrap margin
+.container-fluid, .row, .container{
+  margin: 0;
+  padding: 0;
+}

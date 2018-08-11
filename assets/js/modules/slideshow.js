@@ -232,7 +232,7 @@ export class Slideshow {
         if ($(id).length > 0)
             this.slideshowID = id;
         else {
-            throw 'SLIDESHOW ERROR: \n ' + id + ' is an unknow DOM ID | Slideshow need a container to be displayed';
+            throw new Error('SLIDESHOW ERROR: \n ' + id + ' is an unknow DOM ID | Slideshow need a container to be displayed');
         }
     }
 }

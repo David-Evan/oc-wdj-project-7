@@ -30,6 +30,15 @@ export const Slideshow =
     ],
 };
 
+export const Error = {
+    enabledFullDescription : true,
+};
+
+export const Stands= {
+    contract: "Lyon",
+    API_GetAllsStandsURL : 'https://api.jcdecaux.com/vls/v1/stations?contract={contract_name}&apiKey={api_key}',
+};
+
 export const GoogleMap = {
     GooglePlatformAPIKey:  APIKeys.GooglePlatformAPIKey,
 
@@ -197,8 +206,3 @@ export const GoogleMap = {
     ],
 };
 
-export const Stands= {
-
-    contract: "Lyon",
-    API_GetAllsStandsURL : 'https://api.jcdecaux.com/vls/v1/stations?contract={contract_name}&apiKey={api_key}',
-};

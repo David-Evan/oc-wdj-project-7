@@ -1,8 +1,9 @@
 
-
+@import 'mixins';
 @import 'config';
 
 @import 'layout';
+
 
 /*----------------------------*\
     MODULES
@@ -10,5 +11,5 @@
 @import 'modules/slideshow';
 @import 'modules/signaturePad';
 @import 'modules/loader';
-
+@import 'modules/error';
 @import 'animation';

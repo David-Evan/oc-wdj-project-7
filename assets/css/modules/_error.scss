@@ -1,0 +1,32 @@
+#error{
+  @include fullScreenBox;
+  background-color: rgba(0,0,0,0.7);
+  top: 0;
+}
+
+.errorBox{
+    min-height: 25%;
+    margin: auto;
+    border: solid 3px #333;
+
+    border-radius: 15px;
+    padding: 20px;
+
+    text-align: center;
+
+    background: #fff;
+    @include lightShadow;
+}
+
+.errorBox-button{
+    margin-top: 35px;
+    margin-bottom: 20px;
+}
+
+.errorBox-title{
+  margin-bottom: 25px;
+}
+
+.errorBox-message i{
+  font-size: 0.8em;
+}

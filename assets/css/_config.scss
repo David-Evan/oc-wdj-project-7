@@ -1,3 +1,8 @@
 
+$global_primaryColor : #e11f26;
+$global_primaryColorLight: lighten($global_primaryColor, 15%);
+$global_altColor : #333;
+$global_altColorLight : #d1cfd0;
+
 $global_textColor : #333;
 $global_altColor : #e11f26;

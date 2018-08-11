@@ -163,7 +163,7 @@ export class SignaturePad{
             this.canvasID = id + '_canvas';
         }
         else {
-            throw 'SIGNATURE PAD ERROR: \n ' + id + ' is an unknow DOM ID | Slideshow need a container to be displayed';
+            throw new Error('SIGNATURE PAD ERROR: \n ' + id + ' is an unknow DOM ID | SignaturePad need a container to be displayed');
         }
     }
 }

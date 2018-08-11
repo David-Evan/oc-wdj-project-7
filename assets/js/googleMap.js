@@ -39,7 +39,9 @@ export class GoogleMap {
             this.addMapsMarkers();
         }
 
-        this.removeLoadScreen();
+       this.removeLoadScreen();
+
+        throw new Error('Erreur');
     }
 
 
@@ -110,7 +112,7 @@ export class GoogleMap {
      * @returns {MarkerClusterer}
      */
     showMakersCollection(){
-        return new MarkerClusterer(this.map, this.markersCollection, imagePath: this.MCImagePath});
+        return new MarkerClusterer(this.map, this.markersCollection, {imagePath: this.MCImagePath});
     }
 
     /**
