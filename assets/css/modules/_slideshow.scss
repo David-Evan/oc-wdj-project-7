@@ -1,11 +1,17 @@
-#slideshowSection{
+#slideshowSection, #slideshowOverlay{
     width: 100%;
     height: 100vh;
-    display: none;
     position: absolute;
-    background-color: rgba(0,0,0,0.55);
     z-index: 10;
+
+    display: none;
 }
+
+#slideshowOverlay{
+  z-index: 8;
+  background-color: rgba(0,0,0,0.75);
+}
+
 
 #slideshowCloseButton, .slide, .slideshow-controls-section{
     position: absolute;

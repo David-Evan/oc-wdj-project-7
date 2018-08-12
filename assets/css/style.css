@@ -47,13 +47,17 @@ button:focus, .btn:focus {
 /*----------------------------*\
     MODULES
 \*----------------------------*/
-#slideshowSection {
+#slideshowSection, #slideshowOverlay {
   width: 100%;
   height: 100vh;
-  display: none;
   position: absolute;
-  background-color: rgba(0, 0, 0, 0.55);
   z-index: 10;
+  display: none;
+}
+
+#slideshowOverlay {
+  z-index: 8;
+  background-color: rgba(0, 0, 0, 0.75);
 }
 
 #slideshowCloseButton, .slide, .slideshow-controls-section {
@@ -231,7 +235,7 @@ button:focus, .btn:focus {
   background-color: #F5F5F5;
 }
 
-#standDetailSection, #bookingSection, #currentBookingSection {
+#standDetailSection, #bookingSection, #currentBookingSection, #statsSection, #standPanelWelcome {
   margin: 10px;
   background-color: white;
   box-shadow: 1px 6px 8px rgba(0, 0, 0, 0.2);
@@ -240,6 +244,11 @@ button:focus, .btn:focus {
 
 #currentBookingSection {
   font-size: 0.85em;
+}
+
+#standDetailSection {
+  transform: translateX(-400px);
+  position: absolute;
 }
 
 #standDetailSection h2, #standDetailSection div:not(.station-detail-number):not(.station-detail-status) {
@@ -294,13 +303,19 @@ button:focus, .btn:focus {
 
 .station-detail-address,
 .station-detail-available-bike-park,
-.station-detail-bike {
+.station-detail-bike,
+.stats-detail-bike-on-road,
+.stats-detail-bike,
+.stats-available-bike-park {
   text-transform: capitalize;
 }
 
 .station-detail-address i.fas,
 .station-detail-available-bike-park i.fas,
-.station-detail-bike i.fas {
+.station-detail-bike i.fas,
+.stats-detail-bike-on-road i.fas,
+.stats-detail-bike i.fas,
+.stats-available-bike-park i.fas {
   float: left;
   width: 30px;
   height: 20px;
@@ -308,10 +323,19 @@ button:focus, .btn:focus {
   font-size: 1.4em;
 }
 
-.station-title, .stand-detail-welcome-title, .current-booking-title {
+.stats-detail-bike-on-road {
+  text-transform: none;
+}
+
+.station-title, .stand-detail-welcome-title, .current-booking-title, .stats-title {
   text-align: center;
   font-size: 1.45em;
   font-weight: 600;
+}
+
+.stats-title {
+  font-size: 1.3em;
+  margin-bottom: 30px;
 }
 
 .station-detail-number {
@@ -347,6 +371,18 @@ button:focus, .btn:focus {
   padding: 8px;
 }
 
+.fas.fa-parking {
+  color: #0063b3;
+}
+
+.fas.fa-map-marker-alt {
+  color: #DC4638;
+}
+
+.fas.fa-bicycle.available {
+  color: #008800;
+}
+
 @keyframes lds-double-ring {
   0% {
     transform: rotate(0);
@@ -365,7 +401,11 @@ button:focus, .btn:focus {
   }
 }
 
-#helpSection {
+.primary-color {
+  color: #e11f26;
+}
+
+#slideshowOpenButton {
   position: absolute;
   top: 10px;
   left: 50%;
@@ -378,7 +418,7 @@ button:focus, .btn:focus {
   cursor: pointer;
 }
 
-#helpSection:hover {
+#slideshowOpenButton:hover {
   background-color: rgba(215, 0, 0, 0.7);
 }
 

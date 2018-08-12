@@ -47,7 +47,7 @@ export const GoogleMap = {
 
     mapStartPosition : {lat: 45.76, lng: 4.84},
     mapZoom: 13,
-   /* mapStyle: [
+    mapStyle: [
         {
             "elementType": "geometry",
             "stylers": [
@@ -206,5 +206,5 @@ export const GoogleMap = {
                 }
             ]
         }
-    ],*/
+    ],
 };

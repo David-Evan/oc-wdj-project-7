@@ -4,26 +4,35 @@
 export class EffectManager{
 
     initProperties(config){
-        this.mapWidth = 0; // The map width it necessary to be determinate at the last moment (when close the control panel) 'cause it can change when resizing window
-        this.standInfoSectionWidth = 0; // Same as previous
-
+        /**
+         * This is the starting section status
+         */
         this.standInfoSectionStatus = 'open';
-        this.signaturePadPanelStatus = 'open';
+        this.standDetailSectionStatus = 'close';
 
         /**
          * Elements identifier collection to manage. When you add it in config, remember to add "#"
          * @type {{mapID: (*|string), standInfoSectionID: (*|string), standInfoControlButtonID: (*|string), standInfoControlButtonGlyphID: (*|string)}}
          */
         this.idCollection = {
-                                mapID :                         config && config.mapID || '#mapSection',
-                                standInfoSectionID :            config && config.standInfoSectionID || '#standInfoSection',
-                                standInfoControlButtonID :      config && config.standInfoControlButtonID || '#standInfoControlButton',
-                                standInfoControlButtonGlyphID : config && config.standInfoControlButtonGlyphID || '#standInfoControlButtonGlyph',
+                                map :                         config && config.map || '#mapSection',
+                                standInfoSection :            config && config.standInfoSection || '#standInfoSection',
+                                standInfoControlButton :      config && config.standInfoControlButton || '#standInfoControlButton',
+                                standInfoControlButtonGlyph : config && config.standInfoControlButtonGlyph || '#standInfoControlButtonGlyph',
+                                slideshowSection :            config && config.slideshowSection || '#slideshowSection',
+                                slideshowOpenButton:          config && config.slideshowOpenButton || '#slideshowOpenButton',
+                                slideshowCloseButton:         config && config.slideshowCloseButton || '#slideshowCloseButton',
+                                slideshowOverlay:             config && config.slideshowOverlay || '#slideshowOverlay',
+                                standPanelWelcome:            config && config.standPanelWelcome || '#standPanelWelcome',
+                                statsSection:                 config && config.statsSection || '#statsSection',
+                                standDetailSection:           config && config.standDetailSection || '#standDetailSection',
         };
+
+        this.mapWidth = $(this.idCollection.map).width(); // The map width it necessary to be determinate at the last moment (when close the control panel) 'cause it can change when resizing window
+        this.standInfoSectionWidth = $(this.idCollection.standInfoSection).width(); // Same as previous
     }
 
-    constructor(config = false, lazyStarting = true)
-    {
+    constructor(config = false, lazyStarting = true) {
         this.initProperties(config);
         this.checkConfigValidity();
 
@@ -52,11 +61,21 @@ export class EffectManager{
 
     addAllEffect(){
         this.addStandInfoPanelEffect();
+        this.addSlideshowEffect();
+    }
+
+    addSlideshowEffect(){
+        $(this.idCollection.slideshowOpenButton).on('click', ()=>{
+            this.showSlideshowSection();
+        });
+
+        $(this.idCollection.slideshowCloseButton).on('click', ()=>{
+            this.hideSlideshowSection();
+        })
     }
 
     addStandInfoPanelEffect(){
-
-        $(this.idCollection.standInfoControlButtonID).on('click',
+        $(this.idCollection.standInfoControlButton).on('click',
             ()=> {
                 if(this.standInfoSectionStatus === 'open') {
                     this.hideStandInfoSection();
@@ -66,15 +85,51 @@ export class EffectManager{
             });
     }
 
+    hideStatsSection(){
+        $(this.idCollection.statsSection).css({transitionDuration: '0.5s', transform: 'translateX(-'+this.standInfoSectionWidth+'px)'})
+        $(this.idCollection.statsSection).fadeOut(500);
+    }
+
+    hideStandPanelWelcome(){
+        $(this.idCollection.standPanelWelcome).css({transitionDuration: '0.5s', transform: 'translateX(-'+this.standInfoSectionWidth+'px)'});
+        $(this.idCollection.statsSection).fadeOut(500);
+    }
+
+    showStandDetailSection(){
+        if(this.standDetailSectionStatus === 'close'){
+            // is first stand detail opening
+            this.hideStandPanelWelcome();
+            this.hideStatsSection();
+            setTimeout(()=>
+                $(this.idCollection.standDetailSection).css({position:'static', transitionDuration: '0.5s', transform: 'translateX(0px)'}), 450);
+        }
+        else {
+
+            this.standInfoSectionStatus = 'open';
+        }
+
+    }
+
+    showSlideshowSection(){
+        $(this.idCollection.slideshowOverlay).fadeIn('500', ()=>{
+            $(this.idCollection.slideshowSection).slideToggle('slow');
+        });
+    }
+
+    hideSlideshowSection(){
+        $(this.idCollection.slideshowSection).slideToggle('slow', ()=>{
+        $(this.idCollection.slideshowOverlay).fadeOut('500');});
+    }
+
     hideStandInfoSection(){
         if(this.standInfoSectionStatus === 'open')
         {
-            this.mapWidth = $(this.idCollection.mapID).width();
-            this.standInfoSectionWidth = $(this.idCollection.standInfoSectionID).width();
+            this.mapWidth = $(this.idCollection.map).width();
+            this.standInfoSectionWidth = $(this.idCollection.standInfoSection).width();
 
-            $(this.idCollection.standInfoSectionID).animate({left: '-'+this.standInfoSectionWidth+'px'}, 700);
-            $(this.idCollection.mapID).animate({width: '100%'}, 700);
-            $(this.idCollection.standInfoControlButtonGlyphID).css({transform: 'rotate(180deg)'});
+            $(this.idCollection.standInfoSection).animate({left: '-'+this.standInfoSectionWidth+'px'}, 700);
+            $(this.idCollection.map).animate({width: '100%'}, 700);
+            $(this.idCollection.standInfoControlButtonGlyph).css({transform: 'rotate(180deg)'});
             this.standInfoSectionStatus = 'close';
         }
     }
@@ -82,9 +137,9 @@ export class EffectManager{
     showStandInfoSection(){
         if(this.standInfoSectionStatus === 'close')
         {
-            $(this.idCollection.standInfoSectionID).animate({left: '0px'}, 700);
-            $(this.idCollection.mapID).animate({width: this.mapWidth}, 700);
-            $(this.idCollection.standInfoControlButtonGlyphID).css({transform: 'rotate(0deg)'});
+            $(this.idCollection.standInfoSection).animate({left: '0px'}, 700);
+            $(this.idCollection.map).animate({width: this.mapWidth}, 700);
+            $(this.idCollection.standInfoControlButtonGlyph).css({transform: 'rotate(0deg)'});
             this.standInfoSectionStatus = 'open';
         }
     }

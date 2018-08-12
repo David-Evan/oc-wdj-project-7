@@ -11,7 +11,7 @@ export class BookingManager{
      */
     initProperties(effectManager, config){
         // (En minutes)
-        this.bookingDuration = config && config.bookingDuration || 20;
+        this.bookingDuration = config && config.bookingDuration || 0.1;
         this.bookingSectionID = config && config.bookingSectionID || '#bookingSection';
 
         this.currentBookingSectionID = config && config.currentBookingSectionID || '#currentBookingSection';

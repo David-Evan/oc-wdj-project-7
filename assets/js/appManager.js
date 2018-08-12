@@ -22,10 +22,10 @@ export class AppManager {
 
     startApp(){
         try {
-            this.effectManager = new EffectManager(this.effectManagerConfig);
 
-            this.googleMap = new GoogleMap(this.effectManager, this.googleMapConfig);
             this.slideshow = new Slideshow('slideshowSection', Config.Slideshow);
+            this.effectManager = new EffectManager(this.effectManagerConfig);
+            this.googleMap = new GoogleMap(this.effectManager, this.googleMapConfig);
         }
         catch (e) {
             new ErrorManager(e, Config.Error);

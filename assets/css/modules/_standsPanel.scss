@@ -11,13 +11,13 @@
     background-color: #F5F5F5;
 }
 
-#standDetailSection, #bookingSection, #currentBookingSection {
+#standDetailSection, #bookingSection, #currentBookingSection, #statsSection, #standPanelWelcome{
 
   margin: 10px;
   background-color: white;
   box-shadow: 1px 6px 8px rgba(0,0,0,0.20);
 
-  padding: 25px;;
+  padding: 25px;
 }
 
 #currentBookingSection{
@@ -25,6 +25,10 @@
 }
 
 #standDetailSection{
+
+  transform: translateX(-400px);
+  position: absolute;
+
   & h2, & div:not(.station-detail-number):not(.station-detail-status){
     margin-top: 20px;
     }
@@ -79,7 +83,10 @@
 
 .station-detail-address,
 .station-detail-available-bike-park,
-.station-detail-bike
+.station-detail-bike,
+.stats-detail-bike-on-road,
+.stats-detail-bike,
+.stats-available-bike-park
 {
     text-transform: capitalize;
 
@@ -91,11 +98,21 @@
   }
 }
 
-.station-title, .stand-detail-welcome-title, .current-booking-title{
+.stats-detail-bike-on-road{
+  text-transform: none;
+}
+
+.station-title, .stand-detail-welcome-title, .current-booking-title, .stats-title{
   text-align: center;
   font-size: 1.45em;
   font-weight: 600;
 }
+
+.stats-title{
+  font-size:1.3em;
+  margin-bottom: 30px;
+}
+
 .station-detail-number{
    text-align: center;
    font-size: 0.8em;
@@ -125,4 +142,15 @@
     text-align: center;
     text-transform: uppercase;
     padding: 8px;
+}
+.fas.fa-parking{
+  color:#0063b3
+}
+
+.fas.fa-map-marker-alt{
+  color: #DC4638
+}
+.fas.fa-bicycle.available
+{
+  color: #008800
 }

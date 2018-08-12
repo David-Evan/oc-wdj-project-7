@@ -28,6 +28,8 @@ export class StandsManager{
     {
         this.initProperties(effectManager, config);
         this.loadStands();
+
+        this.createHTMLStatsSection();
     }
 
     /**
@@ -35,6 +37,8 @@ export class StandsManager{
      * @param standID {int} - ID de la station de vélo
      */
     showStandDetails(standID){
+
+        this.effectManager.showStandDetailSection();
         // Few conditons to beautifull the result
         let standDetails = this.standsCollection.find( s => s.number === standID);
 
@@ -70,6 +74,23 @@ export class StandsManager{
         this.bookingManager.addBookABikeEventListener('bookABikeBtn'+standDetails.number);
     }
 
+    createHTMLStatsSection(){
+        let slideNode = Tools.htmlToElements(
+            '<h2 class="stats-title">Le saviez-vous ?</h2>'+
+            '<p>Vélo\'V à Lyon, c\'est : </p>'+
+            '<div class="stats-detail-bike"><i class="fas fa-bicycle primary-color"></i>' +
+            '<p><strong>152</strong> Vélos disponibles</p>' +
+            '</div>' +
+            '<div class="stats-available-bike-park"><i class="fas fa-parking"></i>' +
+            '<p> <strong>185</strong> Places disponibles</p>' +
+            '</div> ' +
+            '<div class="stats-detail-bike-on-road"><i class="fas fa-road">&nbsp;</i> ' +
+            '<p><strong>230</strong> Cycliste sur la route !</p></p>' +
+            '</div>'
+        );
+
+        $('#statsSection').append(slideNode);
+    }
 
     /**
      * TODO : Asynchronisme
