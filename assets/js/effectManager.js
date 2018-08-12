@@ -86,13 +86,13 @@ export class EffectManager{
     }
 
     hideStatsSection(){
-        $(this.idCollection.statsSection).css({transitionDuration: '0.5s', transform: 'translateX(-'+this.standInfoSectionWidth+'px)'})
-        $(this.idCollection.statsSection).fadeOut(500);
+        $(this.idCollection.statsSection).css({transitionDuration: '0.5s', transform: 'translateX(-'+this.standInfoSectionWidth+'px)'});
+        $(this.idCollection.statsSection).hide(500);
     }
 
     hideStandPanelWelcome(){
         $(this.idCollection.standPanelWelcome).css({transitionDuration: '0.5s', transform: 'translateX(-'+this.standInfoSectionWidth+'px)'});
-        $(this.idCollection.statsSection).fadeOut(500);
+        $(this.idCollection.standPanelWelcome).hide(500);
     }
 
     showStandDetailSection(){

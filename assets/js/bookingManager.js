@@ -137,6 +137,11 @@ export class BookingManager{
             if (this.bookingReamingTime.min <= 0 && this.bookingReamingTime.sec <= 0) {
                 clearInterval(this.countDownTimer);
                 document.getElementById('currentBookingSection').innerHTML = '<p class="text-center"><strong>Aaaaaw nooo ! </strong><br/><img src="./assets/images/sadness.jpg" alt="Personnage pixar pleurant" /><br/> Votre réservation a expériée.</p>';
+
+                this.bikeBooked = false;
+                this.booking = {};
+
+                this.deleteBookingInStorage();
             }
         }, 1000);
     }
