@@ -9,10 +9,10 @@ export class Slideshow {
      */
     initProperties(config) {
         this.slideshowID = null;
-        this.slidesCollection = [];
         this.index = 0;
         this.slideAnimation = null;
 
+        this.slidesCollection = config && config.slidesCollection;
         this.imageDirectory = config && config.imageDirectory || '../../images/slideshow/';
         this.slideWidth = config && config.slideWidth || '900px';
         this.slideHeight = config && config.slideHeight || '600px';
@@ -29,12 +29,12 @@ export class Slideshow {
      * @param config - {json}- Données de config à utiliser. Si false, la config par defaut sera utilisée
      * @param lazyStarting {Boolean} - Permet la création et le démmarage automatique du composant
      */
-    constructor(containerID, slidesCollection = false, config = false ,lazyStarting = true) {
+    constructor(containerID, config = false ,lazyStarting = true) {
         this.initProperties(config);
         this.containerID = '#'+containerID;
 
-        if (slidesCollection !== false)
-            this.addSlideCollection(slidesCollection);
+        if (this.slidesCollection.length > 0)
+            this.addSlideCollection(this.slidesCollection);
 
         if(lazyStarting) {
             this.createHTMLSlideshow();
@@ -140,6 +140,14 @@ export class Slideshow {
     }
 
     /**
+     * Create close button html control
+     */
+    createHTMLCloseButton(){
+        let slideNode = Tools.htmlToElements('<div id="slideshowCloseButton">Fermer &nbsp;<i class="fas fa-times"></i></div>');
+        $(this.slideshowID).append(slideNode);
+    }
+
+    /**
      *  Créée un diaporama HTML et l'insert
      * @param newSlidesCollection - Permet l'ajout d'une nouvelle collection à la volée.
      * @param addMethod - Défini la manière d'ajouter la nouvelle collection :
@@ -148,6 +156,9 @@ export class Slideshow {
      *                    default : Réinitialise la liste pour la remplacer par la nouvelle.
      */
     createHTMLSlideshow(newSlidesCollection = false, addMethod = 'reset'){
+
+        this.createHTMLCloseButton();
+
         if(newSlidesCollection !== false) {
             switch (addMethod) {
                 case 'addAtEnd':
@@ -179,9 +190,9 @@ export class Slideshow {
 
         let displayed = displayControls ? '' : ' display:none;';
         let slideNode = Tools.htmlToElements(
-            '<div class="controls" style="position: absolute; z-index:100;'+displayed+'">' +
-            '<div class="slideshows-controls next"><i class="fas fa-chevron-right"></i></div>' +
-            '<div class="slideshows-controls prev"><i class="fas fa-chevron-left"></i></div>' +
+            '<div class="slideshow-controls-section" style="position: absolute; z-index:100;'+displayed+'">' +
+              '<div class="slideshow-controls next"><i class="fas fa-chevron-right"></i></div>' +
+              '<div class="slideshow-controls prev"><i class="fas fa-chevron-left"></i></div>' +
             '</div>');
         $(this.slideshowID).append(slideNode);
     }
@@ -194,6 +205,7 @@ export class Slideshow {
         if(keyboardControls)
             this.addKeyboardsControlsListener();
         this.addButtonControlsListener();
+
     }
 
     /**
@@ -217,8 +229,8 @@ export class Slideshow {
      */
     addButtonControlsListener()
     {
-        $(this.slideshowID+' .slideshows-controls.next').on('click', ()=> this.showNext());
-        $(this.slideshowID+' .slideshows-controls.prev').on('click', ()=> this.showPrevious());
+        $(this.slideshowID+' .slideshow-controls.next').on('click', ()=> this.showNext());
+        $(this.slideshowID+' .slideshow-controls.prev').on('click', ()=> this.showPrevious());
     }
 
     /*--- Getter / Setter ---*/

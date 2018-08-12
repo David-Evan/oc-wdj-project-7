@@ -11,7 +11,7 @@ export const Slideshow =
     nextSlideDelay: 3500,
     imageDirectory : './assets/images/slideshow/',
     enabledKeyboardControls: true,
-    slideshowData : [
+    slidesCollection : [
         {
             imageURL: 'https://dummyimage.com/700x400/111/ff0000&text=1',
             title: 'Ceci est ma première diapo',
