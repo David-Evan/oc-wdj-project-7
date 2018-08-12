@@ -51,7 +51,7 @@ export class StandsManager{
                 '<h2 class="station-title">'+standDetails.name+'</h2>'+
                 '<div class="station-detail-number">(n°'+standDetails.number+')</div> ' +
                 '<div class="station-detail-address"><i class="fas fa-map-marker-alt">&nbsp;</i> ' +
-                    '<adress>'+Tools.formatAddress(standDetails.address)+'</adress>' +
+                    '<p><adress>'+Tools.formatAddress(standDetails.address)+'</adress></p>' +
                 '</div> ' +
                 '<div class="station-detail-available-bike-park"><i class="fas fa-parking"></i>' +
                     '<p> <strong>'+standDetails.available_bike_stands+'</strong> Places disponibles</p>' +
@@ -60,15 +60,13 @@ export class StandsManager{
                     '<p><strong>'+standDetails.available_bikes+'</strong> Vélos disponibles</p>' +
                 '</div>' +
                 '<div class="station-detail-booking">' +
-                    '<button id="bookABikeBtn'+standDetails.number+'" data-stand-number="'+standDetails.number+'" class="btn btn-lg">'+this.bookingBtnContent+'</button>' +
+                    '<button id="bookABikeBtn'+standDetails.number+'" data-stand-name="'+standDetails.name.toLowerCase()+'" data-stand-number="'+standDetails.number+'" class="btn btn-lg">'+this.bookingBtnContent+'</button>' +
                 '</div>');
 
         $('#standDetailSection').html('').append(slideNode);
-
-
         this.effectManager.showStandInfoSection();
 
-        $(this.bookingManager.signaturePad.signaturePadID).hide();
+        $('#bookingSection').hide();
         this.bookingManager.addBookABikeEventListener('bookABikeBtn'+standDetails.number);
     }
 

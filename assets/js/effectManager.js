@@ -5,14 +5,17 @@ export class EffectManager{
 
     initProperties(config){
         this.mapWidth = 0; // The map width it necessary to be determinate at the last moment (when close the control panel) 'cause it can change when resizing window
-        this.standInfoSectionWidth = 0;
+        this.standInfoSectionWidth = 0; // Same as previous
+
+        this.standInfoSectionStatus = 'open';
+        this.signaturePadPanelStatus = 'open';
 
         /**
          * Elements identifier collection to manage. When you add it in config, remember to add "#"
          * @type {{mapID: (*|string), standInfoSectionID: (*|string), standInfoControlButtonID: (*|string), standInfoControlButtonGlyphID: (*|string)}}
          */
         this.idCollection = {
-                                mapID :                         config && config.mapID || '#map',
+                                mapID :                         config && config.mapID || '#mapSection',
                                 standInfoSectionID :            config && config.standInfoSectionID || '#standInfoSection',
                                 standInfoControlButtonID :      config && config.standInfoControlButtonID || '#standInfoControlButton',
                                 standInfoControlButtonGlyphID : config && config.standInfoControlButtonGlyphID || '#standInfoControlButtonGlyph',
@@ -53,11 +56,9 @@ export class EffectManager{
 
     addStandInfoPanelEffect(){
 
-        $(this.idCollection.standInfoControlButtonID).on( 'click',
+        $(this.idCollection.standInfoControlButtonID).on('click',
             ()=> {
-                if($(this.idCollection.standInfoControlButtonID).data('state') == 'open') {
-                    this.mapWidth = $(this.idCollection.mapID).width();
-                    this.standInfoSectionWidth = $(this.idCollection.standInfoSectionID).width();
+                if(this.standInfoSectionStatus === 'open') {
                     this.hideStandInfoSection();
                 }
                 else
@@ -66,16 +67,25 @@ export class EffectManager{
     }
 
     hideStandInfoSection(){
-        $(this.idCollection.standInfoSectionID).animate({left: '-'+this.standInfoSectionWidth+'px'}, 700);
-        $(this.idCollection.mapID).animate({width: '100%'}, 700);
-        $(this.idCollection.standInfoControlButtonGlyphID).css({transform: 'rotate(180deg)'});
-        $(this.idCollection.standInfoControlButtonID).data('state', 'close');
+        if(this.standInfoSectionStatus === 'open')
+        {
+            this.mapWidth = $(this.idCollection.mapID).width();
+            this.standInfoSectionWidth = $(this.idCollection.standInfoSectionID).width();
+
+            $(this.idCollection.standInfoSectionID).animate({left: '-'+this.standInfoSectionWidth+'px'}, 700);
+            $(this.idCollection.mapID).animate({width: '100%'}, 700);
+            $(this.idCollection.standInfoControlButtonGlyphID).css({transform: 'rotate(180deg)'});
+            this.standInfoSectionStatus = 'close';
+        }
     }
 
     showStandInfoSection(){
-        $(this.idCollection.standInfoSectionID).animate({left: '0px'}, 700);
-        $(this.idCollection.mapID).animate({width: this.mapWidth}, 700);
-        $(this.idCollection.standInfoControlButtonGlyphID).css({transform: 'rotate(0deg)'});
-        $(this.idCollection.standInfoControlButtonID).data('state', 'open');
+        if(this.standInfoSectionStatus === 'close')
+        {
+            $(this.idCollection.standInfoSectionID).animate({left: '0px'}, 700);
+            $(this.idCollection.mapID).animate({width: this.mapWidth}, 700);
+            $(this.idCollection.standInfoControlButtonGlyphID).css({transform: 'rotate(0deg)'});
+            this.standInfoSectionStatus = 'open';
+        }
     }
 }

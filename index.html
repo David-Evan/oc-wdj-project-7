@@ -13,10 +13,8 @@
 </head>
 <body>
 <div class="container-fluid">
-
     <div id="loader">
         <h1 id="Welcome">Bienvenue sur la plateforme Velo-V</h1>
-
         <div class="loader-css">
             <div class="lds-double-ring">
                 <div></div>
@@ -25,39 +23,70 @@
             <p class="loader-text">Chargement ...</p>
         </div>
     </div>
-
-
     <header class="row">
     </header>
 
+    <!-- SLIDESHOW SECTION -->
     <section id="slideshowSection" class="row">
     </section>
 
+    <!-- MAP SECTION -->
     <section id="mapSection" class="row">
-        <section id="map"></section>
+        <section id="map">
+        </section>
+        <section id="helpSection">
+            Afficher l'aide
+        </section>
     </section>
 
+    <!-- STANDS INFO SECTION -->
+    <!-- Take care : Each section can be replaced by js created components. Never add datas in this section that you want to be persisted -->
     <section id="standInfoSection">
-      <div id="standInfoControlButton" data-state="open">
-          <div >
+        <!-- Control panel button -->
+        <div id="standInfoControlButton">
             <i id="standInfoControlButtonGlyph" class="fa fa-chevron-left"></i>
-          </div>
-      </div>
+        </div>
 
+        <!-- Stand Detail Section -->
         <section id="standDetailSection" class="station-detail">
+          <div class="stand-detail-welcome">
+            <h2 class="stand-detail-welcome-title">Bienvenue sur l'application Vélo'V Lyon</h2>
+            <div class="stand-detail-welcome-message">
+            <p>Cette application vous permet de connaître l'état des stations en temps réel et de réserver des vélos partout dans la ville.</p>
+            <p class="text-center"><strong>Enjoy !</strong></p>
+          </div>
+          </div>
         </section>
 
+        <!-- Booking Section with sign pad -->
         <section id="bookingSection">
             <figure id="signatureContainer">
             </figure>
         </section>
-    </section>
 
-    <footer></footer>
+        <!-- Stats Panel -->
+        <section id="statsSection">
+        </section>
+
+        <!-- Current Booking Section -->
+        <section id="currentBookingSection">
+            <h2 class="current-booking-title">Merci pour votre réservation!</h2>
+            <div class="current-booking-message">
+              <p>
+                Un vélo vous attend :
+              </p>
+              <p id="currentBookingStandName" class="current-booking-stand">"Lorem ipsum dolor sit amet, consectetur adipisicing."</p>
+              <p id="currentBoolingExpiration"></p>
+              </div>
+              <div class="current-booking-button">
+                  <button id="cancelBooking" class="btn btn-cancel">Annuler</button>
+              </div>
+        </section>
+    </section>
 
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB99Sd3rLJLWd7inCatYC5MMjXeCz7SNTk"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key="></script>
 <script src="assets/js/lib/markerclusterer.js"></script>
 <script type="module" src="assets/js/app.js"></script>
 </body>

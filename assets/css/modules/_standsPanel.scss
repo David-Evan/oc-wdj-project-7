@@ -11,7 +11,7 @@
     background-color: #F5F5F5;
 }
 
-#standDetailSection, #signatureContainer{
+#standDetailSection, #bookingSection, #currentBookingSection {
 
   margin: 10px;
   background-color: white;
@@ -20,13 +20,13 @@
   padding: 25px;;
 }
 
-#bookingSection{
- border: none;
+#currentBookingSection{
+  font-size: 0.85em;
 }
 
 #standDetailSection{
   & h2, & div:not(.station-detail-number):not(.station-detail-status){
-    margin-top: 30px;
+    margin-top: 20px;
     }
 }
 
@@ -82,16 +82,16 @@
 .station-detail-bike
 {
     text-transform: capitalize;
-    display: flex;
 
     & i.fas{
-    display: block;
+    float: left;
+    width: 30px; height: 20px;
     margin-right: 20px;
     font-size: 1.4em;
   }
 }
 
-.station-title{
+.station-title, .stand-detail-welcome-title, .current-booking-title{
   text-align: center;
   font-size: 1.45em;
   font-weight: 600;
@@ -104,4 +104,25 @@
 
 .station-detail-booking{
     text-align: center;
+}
+
+.current-booking-button{
+    text-align: right;
+}
+
+.btn-cancel{
+  background-color: #999;
+  &:hover{background-color: $global_primaryColor;}
+}
+
+
+.current-booking-message{
+    padding-top: 15px;
+}
+
+.current-booking-stand{
+    font-weight: bold;
+    text-align: center;
+    text-transform: uppercase;
+    padding: 8px;
 }

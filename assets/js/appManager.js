@@ -1,6 +1,6 @@
 import * as Config from './modules/config.js';
 import {GoogleMap} from './googleMap.js';
-import {EffectManager} from "./modules/effectManager.js";
+import {EffectManager} from "./effectManager.js";
 import {ErrorManager} from "./modules/errorManager.js";
 
 export class AppManager {
