@@ -9,7 +9,7 @@ export class BookingManager{
      * Initialise les propriétés de l'objet
      * @param config
      */
-    initProperties(config){
+    initProperties(effectManager, config){
         // (En minutes)
         this.bookingDuration = config && config.bookingDuration || 20;
 
@@ -19,14 +19,16 @@ export class BookingManager{
 
         this.signaturePad = new SignaturePad('signatureContainer',
                                             ()=>this.bookABike());
+
+        this.effectManager = effectManager;
     }
 
     /**
      * @param config - Permet d'injecter des configurations pour modifier le comportement par défaut
      */
-    constructor(config = false){
-        this.initProperties(config);
-        $(this.signaturePad.signaturePadID).hide();
+    constructor(effectManager, config = false){
+        this.initProperties(effectManager, config);
+        //$(this.signaturePad.signaturePadID).hide();
     }
 
     /**

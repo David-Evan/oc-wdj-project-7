@@ -1,3 +1,31 @@
-canvas{
-  border: solid 1px black;
+#signatureContainer{
+  margin-top: 10px;
+}
+.signature-canvas{
+  width: 100%;
+  max-height:200px;
+
+  border: solid 1px $global_altColorLight ;
+}
+
+.signature-controls, .signature-title{
+  text-align: center;
+}
+
+.signature-title{
+  font-size: 0.9em;
+  margin-bottom: 10px;
+}
+.signature-label{
+  font-size: 0.9em;
+}
+
+.sign-pad_btn.sign{
+  margin-right: 20px;
+  font-weight: bold;
+}
+
+.sign-pad_btn.reset{
+  background-color: #999;
+  &:hover{background-color: #666 ;}
 }

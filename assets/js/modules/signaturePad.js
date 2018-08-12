@@ -19,7 +19,7 @@ export class SignaturePad{
         this.signatureLabel = config && config.signatureLabel || "Signature";
         this.btnAcceptLabel = config && config.btnAcceptLabel || "Signer";
         this.btnResetLabel = config && config.btnResetLabel || "Effacer";
-        this.signatureTitle = config && config.signatureTitle || "Afin de confirmer votre réservation, merci de signer ci-dessous";
+        this.signatureTitle = config && config.signatureTitle || "<p><strong>Vous y êtes presque !</strong></p> <p>Il ne vous reste plus qu'à signer !</p> ";
 
         this.callbackFunction = callbackFunction;
     }
@@ -58,12 +58,12 @@ export class SignaturePad{
      */
     createHTMLSignaturePad(){
         let signaturePadNode = Tools.htmlToElements(
-            '<h3>'+this.signatureTitle+'</h3>' +
-            '<div class="signatureLabel">' + this.signatureLabel + '</div>' +
-            '<canvas id="'+this.canvasID.substring(1)+'" class="signatureCanvas"></canvas>' +
-            '<div class="signatureControls">' +
-            '<button class="btn sign">'+this.btnAcceptLabel+'</button>' +
-            '<button class="btn reset">'+this.btnResetLabel+'</button> ' +
+            '<div class="signature-title">'+this.signatureTitle+'</div>' +
+            '<div class="signature-label"><i class="fas fa-pencil-alt">&nbsp;</i>&nbsp;' + this.signatureLabel + '</div>' +
+            '<canvas id="'+this.canvasID.substring(1)+'" class="signature-canvas"></canvas>' +
+            '<div class="signature-controls">' +
+            '<button class="sign-pad_btn sign btn">'+this.btnAcceptLabel+'</button>' +
+            '<button class="sign-pad_btn reset btn">'+this.btnResetLabel+'</button> ' +
             '</div>');
 
         $(this.signaturePadID).append(signaturePadNode);
@@ -89,8 +89,8 @@ export class SignaturePad{
      * Ajoute les écouteurs d'événements sur les boutons "Sign" & "Reset"
      */
     addButtonEventsListener() {
-        $(this.signaturePadID + ' .btn.reset').on('click',()=> this.resetSignaturePad());
-        $(this.signaturePadID + ' .btn.sign').on('click',()=> this.validateSignaturePad());
+        $(this.signaturePadID + ' .sign-pad_btn.reset').on('click',()=> this.resetSignaturePad());
+        $(this.signaturePadID + ' .sign-pad_btn.sign').on('click',()=> this.validateSignaturePad());
     }
 
     /**
@@ -116,6 +116,7 @@ export class SignaturePad{
      */
     paintCanvas(e) {
         this.canvasContext.lineTo(e.offsetX, e.offsetY);
+        this.canvasContext.strokeStyle = '#666';
         this.canvasContext.stroke();
     }
 

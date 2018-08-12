@@ -179,7 +179,7 @@ export class Slideshow {
 
         let displayed = displayControls ? '' : ' display:none;';
         let slideNode = Tools.htmlToElements(
-            '<div class="controls" style="position: absolute; z-index:1000;'+displayed+'">' +
+            '<div class="controls" style="position: absolute; z-index:100;'+displayed+'">' +
             '<div class="slideshows-controls next"><i class="fas fa-chevron-right"></i></div>' +
             '<div class="slideshows-controls prev"><i class="fas fa-chevron-left"></i></div>' +
             '</div>');

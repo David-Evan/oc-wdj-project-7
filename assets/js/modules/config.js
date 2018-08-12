@@ -34,6 +34,9 @@ export const Error = {
     enabledFullDescription : true,
 };
 
+export const EffectManager = {
+};
+
 export const Stands= {
     contract: "Lyon",
     API_GetAllsStandsURL : 'https://api.jcdecaux.com/vls/v1/stations?contract={contract_name}&apiKey={api_key}',
@@ -44,7 +47,7 @@ export const GoogleMap = {
 
     mapStartPosition : {lat: 45.76, lng: 4.84},
     mapZoom: 13,
-    mapStyle: [
+   /* mapStyle: [
         {
             "elementType": "geometry",
             "stylers": [
@@ -203,6 +206,5 @@ export const GoogleMap = {
                 }
             ]
         }
-    ],
+    ],*/
 };
-

@@ -22,7 +22,6 @@
 	border-radius: 50%;
 	border: 16px solid #000;
 	border-color: #5b5b5b transparent #5b5b5b transparent;
-	-webkit-animation: lds-double-ring 4s linear infinite;
 	animation: lds-double-ring 4s linear infinite;
 }
 
@@ -32,7 +31,6 @@
 	top: 18px;
 	left: 18px;
 	border-color: transparent #e11f26 transparent #e11f26;
-	-webkit-animation: lds-double-ring_reverse 4s linear infinite;
 	animation: lds-double-ring_reverse 4s linear infinite;
 }
 

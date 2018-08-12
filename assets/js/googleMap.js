@@ -1,5 +1,4 @@
 import {StandsManager} from "./standsManager.js";
-
 /**
  * Représente une carte GoogleMap
  */
@@ -9,7 +8,7 @@ export class GoogleMap {
      * Initialise les propriétés de l'objet
      * @param config
      */
-    initProperties(config){
+    initProperties(effectManager, config){
         this.contract = config && config.contract || 'Lyon';
         this.MCImagePath = config && config.MCImagePath || './assets/images/markerclusterer/m';
         this.iconPath = config && config.iconPath || './assets/images/map_icons/';
@@ -25,15 +24,18 @@ export class GoogleMap {
         this.markersCollection = [];
         this.map = null;
 
-        this.standManager = new StandsManager();
+        this.effectManager = effectManager;
+        this.standManager = new StandsManager(this.effectManager);
     }
 
     /**
+     * @param effectManager - instance of effect manager
      * @param config - Permet d'injecter des configurations pour modifier le comportement par défaut
      * @param lazyStarting - Permet l'affichage et le chargement automatique des données de la map.
      */
-    constructor(config = false, lazyStarting = true) {
-        this.initProperties(config);
+    constructor(effectManager, config = false, lazyStarting = true) {
+        this.initProperties(effectManager, config);
+
         if (lazyStarting) {
             this.createMap();
             this.addMapsMarkers();
@@ -41,7 +43,6 @@ export class GoogleMap {
 
        this.removeLoadScreen();
 
-        throw new Error('Erreur');
     }
 
 
@@ -57,7 +58,7 @@ export class GoogleMap {
     getIconForMaker(marker) {
 
         let icon;
-        if(marker.standStatut = 'OPEN'){
+        if(marker.standStatut == 'OPEN'){
             if(marker.standAvailableBikes < 25)
                 icon = this.icon.numberIcon+marker.standAvailableBikes;
             else

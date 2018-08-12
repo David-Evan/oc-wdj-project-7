@@ -1,10 +1,4 @@
-import * as Config from './modules/config.js';
-import {ErrorManager} from "./modules/errorManager.js";
-import {GoogleMap} from './googleMap.js';
+import {AppManager} from "./appManager.js";
 
-try{
-    new GoogleMap(Config.GoogleMap);
-}
-catch (e) {
-    new ErrorManager(e, Config.Error);
-}
+let appManager = new AppManager();
+appManager.startApp();

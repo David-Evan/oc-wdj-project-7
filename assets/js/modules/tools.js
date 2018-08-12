@@ -33,3 +33,14 @@ export function slugify(textToSlug) {
     .replace(/[^\w\-]+/g, '')       // Remove all non-word chars
     .replace(/\-\-+/g, '-');        // Replace multiple - with single - with a single dash (-)
 }
+
+/**
+ * Format an address
+ * @param address
+ * @return {string} formated address
+ */
+export function formatAddress(address) {
+    return address.replace(/,/g, ',<br>')    // Replace , with ,<br>
+        .replace(/\//g, ' / ')       // add space between /
+        .toLowerCase();
+}
