@@ -1,0 +1,120 @@
+
+@media screen and (max-height: 970px)
+{
+  body {
+    font-size: 1em;
+  }
+}
+
+@media screen and (max-height: 800px)
+{
+
+  #standDetailSection{
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      max-height: 370px;
+      padding-top: 10px;
+  }
+
+  #standDetailSection .btn.btn-lg{
+      height: 35px;
+      font-size: 1.1em;
+      padding: 5px 10px 5px 10px;
+  }
+
+  .station-detail-number{
+      display: none;
+  }
+
+    .signature-canvas{
+      height: 110px;
+  }
+
+  #bookingSection{
+     padding-top: 10px;
+
+  }
+
+}
+
+@media screen and (max-height: 660px)
+{
+  .station-detail-status{
+    display: none;
+  }
+
+  #standDetailSection{
+      max-height: 322px;
+    }
+}
+
+@media screen and (max-width: 1200px)
+{
+  body {
+    font-size: 1em;
+  }
+
+  #standInfoSection{
+    width: 350px;
+  }
+
+  #mapSection{
+    width: 100%;
+    width: calc(100% - 350px);
+  }
+
+  #slideshowSection .slide{
+    max-width:100%;
+  }
+
+  .slideshow-controls.next{
+    left: 510px;
+    border-radius: 10px 0 0 10px;
+  }
+
+  .slideshow-controls.prev{
+    right: 510px;
+    border-radius: 0 10px 10px 0;
+  }
+}
+
+@media screen and (max-width: 1119px)
+{
+  #slideshowOpenButton{
+    display: none;
+  }
+}
+
+@media screen and (max-width: 950px)
+{
+
+  #standInfoSection{
+    width: 300px;
+  }
+
+  #mapSection{
+    width: 100%;
+    width: calc(100% - 300px);
+  }
+}
+
+@media screen and (max-width: 850px)
+{
+
+  #standInfoSection{
+    width: 250px;
+  }
+
+  #mapSection{
+    width: 100%;
+    width: calc(100% - 250px);
+  }
+}
+
+@media screen and (max-width: 600px)
+{
+  #standInfoSection{
+      width: 93%;
+  }
+}

@@ -203,7 +203,7 @@ export class Slideshow {
      */
     startEventsListener(keyboardControls = true){
         if(keyboardControls)
-            // this.addKeyboardsControlsListener();
+            this.addKeyboardsControlsListener();
         this.addButtonControlsListener();
 
     }

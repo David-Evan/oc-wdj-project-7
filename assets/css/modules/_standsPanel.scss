@@ -3,7 +3,6 @@
     left:0;
     top: 0;
     width: 400px;
-    min-width: 350px;
     height: 100vh;
 
     box-shadow: 15px 5px 25px rgba(33,33,33,0.2);
@@ -98,6 +97,10 @@
   }
 }
 
+.station-detail-address {
+    display: flex;
+}
+
 .stats-detail-bike-on-road{
   text-transform: none;
 }
@@ -153,4 +156,9 @@
 .fas.fa-bicycle.available
 {
   color: #008800
+}
+
+
+.bookingRemainingTime{
+  font-weight: bold;
 }
