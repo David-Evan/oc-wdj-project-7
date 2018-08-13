@@ -1,13 +1,13 @@
 import * as Tools from './tools.js';
 
 /**
- * Gestionnaire d'erreur
+ * Error Manager
  */
 export class ErrorManager{
 
     /**
-     * Initialise les propriétés de l'objet
-     * @param error - {Error} Erreur à gérer (instance of Error)
+     * Init object properties - config can be used to change default values.
+     * @param error - {Error} Error to manage - Instance of "Error"
      * @param config
      */
     initProperties(error, config){
@@ -18,7 +18,6 @@ export class ErrorManager{
     }
 
     /**
-     * Permet la gestion des erreurs
      * @param error
      * @param config
      */
@@ -28,7 +27,7 @@ export class ErrorManager{
     }
 
     /**
-     * Permet la création du composant HTML pour la gestion des erreurs et l'affiche
+     * Create the HTML Error component
      */
     createHTMLError(){
 

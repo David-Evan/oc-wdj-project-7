@@ -1,8 +1,18 @@
 import * as APIKeys from './config.apikeys.js';
 
+/**
+ * Get JC Decaux API Keys
+ */
 export const JCDecauxAPIKey = APIKeys.JCDecauxAPIKey;
+/**
+ * Get Google Platform API Key
+ */
 export const GooglePlatformAPIKey = APIKeys.GooglePlatformAPIKey;
 
+/**
+ * Slideshow config
+ * @type {{slideWidth: string, slideHeight: string, slideChangeDuration: number, nextSlideDelay: number, imageDirectory: string, enabledKeyboardControls: boolean, slidesCollection: *[]}}
+ */
 export const Slideshow =
 {
     slideWidth: '700px',
@@ -30,10 +40,18 @@ export const Slideshow =
     ],
 };
 
+/**
+ * Error config
+ * @type {{enabledFullDescription: boolean}}
+ */
 export const Error = {
     enabledFullDescription : true,
 };
 
+/**
+ * Effect manager config
+ * @type {{}}
+ */
 export const EffectManager = {
 };
 
@@ -42,6 +60,10 @@ export const Stands= {
     API_GetAllsStandsURL : 'https://api.jcdecaux.com/vls/v1/stations?contract={contract_name}&apiKey={api_key}',
 };
 
+/**
+ * Google map config
+ * @type {{GooglePlatformAPIKey: *, mapStartPosition: {lat: number, lng: number}, mapZoom: number, mapStyle: *[]}}
+ */
 export const GoogleMap = {
     GooglePlatformAPIKey:  APIKeys.GooglePlatformAPIKey,
 

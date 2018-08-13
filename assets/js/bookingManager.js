@@ -1,17 +1,16 @@
 import {SignaturePad} from "./modules/signaturePad.js";
 
 /**
- * Gestionnaire de réservation
+ * Booking Manager
  */
 export class BookingManager{
 
     /**
-     * Initialise les propriétés de l'objet
+     * Init object properties - config can be used to change default values.
      * @param config
      */
     initProperties(effectManager, config){
-        // (En minutes)
-        this.bookingDuration = config && config.bookingDuration || 0.1;
+        this.bookingDuration = config && config.bookingDuration || 0.1; // time in minutes
         this.bookingSectionID = config && config.bookingSectionID || '#bookingSection';
 
         this.currentBookingSectionID = config && config.currentBookingSectionID || '#currentBookingSection';
@@ -24,12 +23,12 @@ export class BookingManager{
         this.countDownTimer = null;
 
         this.signaturePad = new SignaturePad('signatureContainer',
-                                            ()=>this.bookABike());
+                                            ()=>this.bookABike()); // Callback function - see : SignaturePad
         this.effectManager = effectManager;
     }
 
     /**
-     * @param config - Permet d'injecter des configurations pour modifier le comportement par défaut
+     * @param config
      */
     constructor(effectManager, config = false){
         this.initProperties(effectManager, config);
@@ -41,10 +40,7 @@ export class BookingManager{
     }
 
     /**
-     * Ajoute un écouteur d'évenement associé à un bouton "reservation". Le standID est important
-     * Il permet d'identifier le boutton à associer à la reservation et de pouvoir utiliser plusieurs
-     * BookingManager sur la même interface, le cas échéant.
-     *
+     * Add event listener for each "Booking" button
      * @param standID
      */
     addBookABikeEventListener(standID){
@@ -62,6 +58,9 @@ export class BookingManager{
         });
     }
 
+    /**
+     * Add event listener to "cancel" booking button
+     */
     addCancelBookingEventListener() {
         $('#cancelBooking').on('click', () => {
             if(this.bikeBooked && confirm('Êtes vous sûr de vouloir annuler votre réservation ?'))
@@ -70,7 +69,7 @@ export class BookingManager{
     }
 
     /**
-     * Permet la réservation d'un vélp
+     * Book a bike
      */
     bookABike(){
         this.bikeBooked = true;
@@ -87,20 +86,22 @@ export class BookingManager{
     }
 
     /**
-     * Permet la sauvegarde de la reservation
-     * Ce comportement est délégué à une méthode séparée pour permettre
-     * l'ajout d'un nouveau comportement : Sauvegarde dans une base de données extérieur par exemple
+     * Save booking in storage. Can be customize to allow multi-storage locations or interact with external database
      */
     saveBookingInStorage(){
         sessionStorage.setItem('booking', JSON.stringify(this.booking));
     }
 
-    /**
+    /*
+     * Delete the actual booking in storage
      */
     deleteBookingInStorage(){
         sessionStorage.setItem('booking', '');
     }
 
+    /**
+     * Used to cancel booked bike.
+     */
     cancelBookedBike(){
 
         this.bikeBooked = false;

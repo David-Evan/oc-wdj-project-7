@@ -4,8 +4,15 @@ import {EffectManager} from './effectManager.js';
 import {ErrorManager} from './modules/errorManager.js';
 import {Slideshow} from './modules/slideshow.js';
 
+/**
+ * This is the app start point.
+ */
 export class AppManager {
 
+    /**
+     * Init object properties - config can be used to change default values.
+     * @param config
+     */
     initProperties(config) {
 
         this.googleMapConfig = config && config.googleMapConfig || Config.GoogleMap;
@@ -16,10 +23,17 @@ export class AppManager {
         this.effectManager = null;
     }
 
+    /**
+     * Call initProperties()
+     * @param config
+     */
     constructor(config){
         this.initProperties(config);
     }
 
+    /**
+     * Starting app. Create the differents objects to be used by app
+     */
     startApp(){
         try {
 

@@ -1,11 +1,11 @@
 import {StandsManager} from "./standsManager.js";
 /**
- * Représente une carte GoogleMap
+ * Google Map custom objet. This is the main start for the app.
  */
 export class GoogleMap {
 
     /**
-     * Initialise les propriétés de l'objet
+     * Init object properties - config can be used to change default values.
      * @param config
      */
     initProperties(effectManager, config){
@@ -30,8 +30,8 @@ export class GoogleMap {
 
     /**
      * @param effectManager - instance of effect manager
-     * @param config - Permet d'injecter des configurations pour modifier le comportement par défaut
-     * @param lazyStarting - Permet l'affichage et le chargement automatique des données de la map.
+     * @param config - inject config to changes defaults values
+     * @param lazyStarting - Can be used to automated map display and add markers.
      */
     constructor(effectManager, config = false, lazyStarting = true) {
         this.initProperties(effectManager, config);
@@ -46,14 +46,18 @@ export class GoogleMap {
     }
 
 
+    /**
+     * TODO : Transfert it to AppManager
+     * Remove load screen
+     */
     removeLoadScreen(){
         $('#loader').fadeOut(1600, ()=>$('#loader').remove());
     }
 
     /**
-     * Détermine l'icone associée au marker.
-     * @param marker -
-     * @returns {string|*} - Renvoi le nom du fichier image à utiliser
+     * get icon for each marker. This method can be used to change marker building conditions.
+     * @param {google.maps.marker} - Google map marker
+     * @returns {string|*} - return pictures file name
      */
     getIconForMaker(marker) {
 
@@ -71,7 +75,7 @@ export class GoogleMap {
     }
 
     /**
-     * Permet la création de la map google
+     * Can be used to create Google Maps
      */
     createMap () {
         this.map = new google.maps.Map(document.getElementById('map'), {
@@ -83,8 +87,8 @@ export class GoogleMap {
     }
 
     /**
-     * Permet la création d'un maker Google en fonction des données de la station de vélo
-     * @param stand - Station de vélo au format json défini par l'API JCDecaux
+     * It used to create marker with single stand data
+     * @param stand {JSON} - Bike stand. JSON definited by JCDecaux API
      * @returns {google.maps.Marker}
      */
     createMarker(stand) {
@@ -109,7 +113,7 @@ export class GoogleMap {
     }
 
     /**
-     * Permet la création du regroupement d'icone via la librairie MarkerClusterer
+     * Can be used to group marker with marker clusterer library
      * @returns {MarkerClusterer}
      */
     showMakersCollection(){
@@ -117,7 +121,7 @@ export class GoogleMap {
     }
 
     /**
-     * Ajoute les marker à la map (création + affichage)
+     * Add marker on maps. (Data loading + Marker creation)
      */
     addMapsMarkers(){
         this.loadMakers();
@@ -125,7 +129,7 @@ export class GoogleMap {
     }
 
     /**
-     * Initialise le chargement des markers au sein de la collection MarkerCollection
+     * Convert and push all stands manager standsCollection into Google Map markerCollections
      */
     loadMakers() {
         this.standManager.getAllStands().forEach(

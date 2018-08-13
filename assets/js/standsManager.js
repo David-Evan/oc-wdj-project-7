@@ -3,12 +3,12 @@ import * as Tools from './modules/tools.js';
 import {BookingManager} from "./bookingManager.js";
 
 /**
- * Gestionnaire de Station
+ * This is the Stands Manager. It used to load stand collection.
  */
 export class StandsManager{
 
     /**
-     * Initialise les propriétés de l'objet
+     * Init object properties - config can be used to change stands manager default values.
      * @param config
      */
     initProperties(effectManager, config){
@@ -21,7 +21,7 @@ export class StandsManager{
     }
 
     /**
-     * Assure le chargement de la configuration et lance la récupération des données
+     * When the stand manager is created, it try to load data from JCDECAUX API
      * @param config
      */
     constructor(effectManager, config=false)
@@ -29,12 +29,14 @@ export class StandsManager{
         this.initProperties(effectManager, config);
         this.loadStands();
 
+        // TODO : Change this method
         this.createHTMLStatsSection();
     }
 
     /**
-     * Affiche les détails d'une station de vélo
-     * @param standID {int} - ID de la station de vélo
+     * // TODO : Need to be rebuild
+     * Show single stand details
+     * @param standID {int} - Bike standID
      */
     showStandDetails(standID){
 
@@ -74,6 +76,9 @@ export class StandsManager{
         this.bookingManager.addBookABikeEventListener('bookABikeBtn'+standDetails.number);
     }
 
+    /**
+     * Create HTML Stats section.
+     */
     createHTMLStatsSection(){
         let slideNode = Tools.htmlToElements(
             '<h2 class="stats-title">Le saviez-vous ?</h2>'+
@@ -93,8 +98,8 @@ export class StandsManager{
     }
 
     /**
-     * TODO : Asynchronisme
-     * Permet le chargement des données au sein de standsCollection
+     * TODO : load async data
+     * load stands from JCDecaux API and push them into standsCollection.
      */
     loadStands() {
         let APIurl = Config.Stands.API_GetAllsStandsURL.replace('{contract_name}', Config.Stands.contract)
@@ -118,7 +123,7 @@ export class StandsManager{
     /*--- Getter / Setter ---*/
 
     /**
-     * Renvoi la liste de toutes les stations
+     * Return the standsCollection
      * @returns {array}
      */
     getAllStands(){
