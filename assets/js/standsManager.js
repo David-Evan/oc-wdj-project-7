@@ -14,7 +14,9 @@ export class StandsManager{
     initProperties(effectManager, config){
 
         this.bookingBtnContent = config && config.bookingBtnContent || 'Réserver un Vélo';
+
         this.standsCollection = [];
+        this.stats = {};
 
         this.effectManager = effectManager;
         this.bookingManager = new BookingManager(this.effectManager);
@@ -80,18 +82,21 @@ export class StandsManager{
      * Create HTML Stats section.
      */
     createHTMLStatsSection(){
+
+        let stats = this.getStandsStats();
+
         let slideNode = Tools.htmlToElements(
             '<h2 class="stats-title">Le saviez-vous ?</h2>'+
             '<p>Vélo\'V à Lyon, c\'est : </p>'+
+            '<div class="stats-detail-bike-on-road"><i class="fas fa-road">&nbsp;</i> ' +
+                '<p><strong>'+Tools.numberWithSpaces(stats.bikesOnRoad)+'</strong> Cycliste sur la route </p></p>' +
+            '</div>'+
             '<div class="stats-detail-bike"><i class="fas fa-bicycle primary-color"></i>' +
-            '<p><strong>152</strong> Vélos disponibles</p>' +
+                '<p><strong>'+Tools.numberWithSpaces(stats.availableBikes)+'</strong> Vélos disponibles</p>' +
             '</div>' +
             '<div class="stats-available-bike-park"><i class="fas fa-parking"></i>' +
-            '<p> <strong>185</strong> Places disponibles</p>' +
-            '</div> ' +
-            '<div class="stats-detail-bike-on-road"><i class="fas fa-road">&nbsp;</i> ' +
-            '<p><strong>230</strong> Cycliste sur la route !</p></p>' +
-            '</div>'
+                '<p> <strong>'+Tools.numberWithSpaces(stats.availableParks)+'</strong> Places disponibles</p>' +
+            '</div> '
         );
 
         $('#statsSection').append(slideNode);
@@ -121,6 +126,30 @@ export class StandsManager{
     }
 
     /*--- Getter / Setter ---*/
+
+    /**
+     * Return somes stats for JCDecaux Lyon bikes service
+     * @return {{availableBikes: number, availableParks: number, bikesOnRoad: number}}
+     */
+    getStandsStats(){
+        // Didn't repeat the foreach if already done before
+
+        let availablesBikes = 0;
+        let availableParks = 0;
+        let bikesOnRoad = 0;
+
+        if($.isEmptyObject(this.stats)) {
+            this.standsCollection.forEach(stand => {
+                availablesBikes += stand.available_bikes;
+                availableParks += stand.available_bike_stands;
+                bikesOnRoad += (stand.bike_stands - stand.available_bike_stands);
+            });
+            return this.stats = {availableBikes: availablesBikes, availableParks: availableParks, bikesOnRoad: bikesOnRoad};
+        }
+        else
+            return this.stats;
+    }
+
 
     /**
      * Return the standsCollection

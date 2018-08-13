@@ -44,3 +44,12 @@ export function formatAddress(address) {
         .replace(/\//g, ' / ')       // add space between /
         .toLowerCase();
 }
+
+/**
+ * Add space between number : 10000000 -> 10 000 000
+ * @param x
+ * @return {string}
+ */
+export function numberWithSpaces(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+}

@@ -26,6 +26,8 @@ export class EffectManager{
                                 standPanelWelcome:            config && config.standPanelWelcome || '#standPanelWelcome',
                                 statsSection:                 config && config.statsSection || '#statsSection',
                                 standDetailSection:           config && config.standDetailSection || '#standDetailSection',
+                                bookingSection:               config && config.bookingSection || '#bookingSection',
+                                currentBookingSection:        config && config.currentBookingSection || '#currentBookingSection',
         };
 
         this.mapWidth = $(this.idCollection.map).width(); // The map width it necessary to be determinate at the last moment (when close the control panel) 'cause it can change when resizing window
@@ -48,7 +50,6 @@ export class EffectManager{
 
             if($(idValue).length !== 1)
             {
-                console.log('L\'élément : '+idValue+ ' est présent '+ $(idValue).length +'fois');
                 if($(idValue).length < 1)
                     throw new Error('EffectManager : L\'élément <strong>"'+idValue+'"</strong> est enregistré dans la configuration mais n\'apparaît pas dans la structure de la page.' +
                         '<br>(JSON Key : '+id+')');
@@ -83,6 +84,32 @@ export class EffectManager{
                 else
                     this.showStandInfoSection();
             });
+    }
+
+    bookABikeEffect(){
+        this.hideBookingSection();
+        setTimeout(()=>this.showCurrentBookingSection(), 500);
+
+    }
+
+    showBookingSection(){
+        $(this.idCollection.bookingSection).show();
+        $(this.idCollection.bookingSection).css({transitionDuration: '0.5s', transform: 'translateX(0px)'});
+    }
+
+    hideBookingSection(){
+        $(this.idCollection.bookingSection).css({transitionDuration: '0.5s', transform: 'translateX(-'+this.standInfoSectionWidth+'px)'});
+        $(this.idCollection.bookingSection).hide(500);
+    }
+
+    showCurrentBookingSection(){
+        $(this.idCollection.currentBookingSection).show();
+        $(this.idCollection.currentBookingSection).css({transitionDuration: '0.5s', transform: 'translateX(0px)'});
+    }
+
+    hideCurrentBookingSection(){
+        $(this.idCollection.currentBookingSection).css({transitionDuration: '0.5s', transform: 'translateX(-'+this.standInfoSectionWidth+'px)'});
+        $(this.idCollection.currentBookingSection).hide(500);
     }
 
     hideStatsSection(){

@@ -35,8 +35,8 @@ export class BookingManager{
 
         this.addCancelBookingEventListener();
 
-        $(this.bookingSectionID).hide();
-        $(this.currentBookingSectionID).hide();
+        this.effectManager.hideBookingSection();
+        this.effectManager.hideCurrentBookingSection();
     }
 
     /**
@@ -53,8 +53,8 @@ export class BookingManager{
             this.booking.standID = $this.data('standNumber');
             this.booking.name = $this.data('standName');
 
-            $(this.bookingSectionID).show();
-            $(this.currentBookingSectionID).hide();
+            this.effectManager.showBookingSection();
+            this.effectManager.hideCurrentBookingSection();
         });
     }
 
@@ -79,8 +79,8 @@ export class BookingManager{
 
         // * 60 * 1000 = convert time in minutes to miliseconds timestamps
         this.addCountdownBookingTimer((this.booking.date + (this.bookingDuration* 60 * 1000)), 'currentBoolingExpiration');
-        $(this.currentBookingSectionID).show();
-        $(this.bookingSectionID).hide();
+
+        this.effectManager.bookABikeEffect();
 
         this.saveBookingInStorage();
     }
