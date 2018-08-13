@@ -62,6 +62,7 @@ export class BookingManager{
      * Add event listener to "cancel" booking button
      */
     addCancelBookingEventListener() {
+        // TODO : Remove direct ID
         $('#cancelBooking').on('click', () => {
             if(this.bikeBooked && confirm('Êtes vous sûr de vouloir annuler votre réservation ?'))
                 this.cancelBookedBike();
@@ -69,6 +70,7 @@ export class BookingManager{
     }
 
     /**
+     * TODO : Remove direct ID
      * Book a bike
      */
     bookABike(){
@@ -108,7 +110,9 @@ export class BookingManager{
         this.booking = {};
 
         this.deleteBookingInStorage();
-        $(this.currentBookingSectionID).hide();
+
+        this.effectManager.hideCurrentBookingSection();
+
         clearInterval(this.countDownTimer);
     }
 

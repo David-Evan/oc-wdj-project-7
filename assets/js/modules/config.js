@@ -15,25 +15,25 @@ export const GooglePlatformAPIKey = APIKeys.GooglePlatformAPIKey;
  */
 export const Slideshow =
 {
-    slideWidth: '700px',
-    slideHeight: '400px',
+    slideWidth: '1120px',
+    slideHeight: '630px',
     slideChangeDuration: 1000,
-    nextSlideDelay: 3500,
+    nextSlideDelay: 7000,
     imageDirectory : './assets/images/slideshow/',
     enabledKeyboardControls: true,
     slidesCollection : [
         {
-            imageURL: 'https://dummyimage.com/700x400/111/ff0000&text=1',
+            imageURL: 'slide_1.jpg',
             title: 'Ceci est ma première diapo',
             textContent: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium, corrupti!'
         },
         {
-            imageURL: 'https://dummyimage.com/700x400/000/fff&text=2',
+            imageURL: 'slide_2.jpg',
             title: 'Ceci est ma seconde diapo',
             textContent: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium, corrupti!'
         },
         {
-            imageURL: 'https://dummyimage.com/700x400/ddd/000&text=3',
+            imageURL: 'slide_3.jpg',
             title: 'Ceci est ma 3ème diapo',
             textContent: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium, corrupti!'
         },
@@ -113,6 +113,14 @@ export const GoogleMap = {
         },
         {
             "featureType": "poi",
+            "stylers": [
+                {
+                    "visibility": "on"
+                }
+            ]
+        },
+        {
+            "featureType": "poi",
             "elementType": "geometry",
             "stylers": [
                 {
@@ -153,6 +161,12 @@ export const GoogleMap = {
             "stylers": [
                 {
                     "color": "#ffffff"
+                },
+                {
+                    "visibility": "simplified"
+                },
+                {
+                    "weight": 2
                 }
             ]
         },

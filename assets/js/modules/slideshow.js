@@ -1,4 +1,4 @@
-import * as Tools from './tools.js';
+import * as Tools from '../lib/tools.js';
 /**
  * Slideshow - Représente le diaporama.
  */
@@ -128,7 +128,7 @@ export class Slideshow {
         let slideNode = Tools.htmlToElements(
                             '<figure id ="'+Tools.slugify(slide.title)+'" ' +
                                     'class="slide" ' +
-                                    'style="background: url('+slide.imageURL+');' +  //this.imageDirectory +
+                                    'style="background: url('+this.imageDirectory+slide.imageURL+');' +
                                             'width: '+this.slideWidth+ '; ' +
                                             'height:'+this.slideHeight +';' +
                                             'display: none;' +
@@ -203,7 +203,7 @@ export class Slideshow {
      */
     startEventsListener(keyboardControls = true){
         if(keyboardControls)
-            this.addKeyboardsControlsListener();
+            // this.addKeyboardsControlsListener();
         this.addButtonControlsListener();
 
     }

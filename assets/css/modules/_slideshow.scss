@@ -15,7 +15,7 @@
 
 #slideshowCloseButton, .slide, .slideshow-controls-section{
     position: absolute;
-    top: 40%;
+    top: 50%;
     left: 50%;
     transform: translatex(-50%) translatey(-50%);
 }
@@ -39,11 +39,11 @@
     cursor: pointer;
 
     &.next{
-        left: 350px;
+        left: 560px;
         border-radius: 0 10px 10px 0;
     }
     &.prev{
-        right: 350px;
+        right: 560px;
         border-radius: 10px 0 0 10px;
     }
 }
@@ -51,7 +51,7 @@
 
 #slideshowCloseButton
 {
-    transform: translatex(232px)  translatey(-233px);
+    transform: translatex(440px) translatey(-315px);
 
     padding: 0 5px 0 10px;
 
@@ -75,4 +75,34 @@
 
         text-align: center;
     }
+}
+
+
+.slide h3 {
+    color: #FFF;
+    font-size: 2.5em;
+    margin: auto;
+    padding: 0 10px 0 10px;
+    background-color: rgba(0,0,0,0.65);
+
+    width: 700px;
+    height: 70px;
+    line-height: 70px;
+    text-align: center;
+
+    border-radius: 0 0 7px 7px;
+}
+
+.slide figcaption{
+      color: #000;
+
+    margin-top: 490px;
+    padding: 0 10px 0 10px;
+    background-color: rgba(255,255,255,0.6);
+
+    width: 1120px;
+    height: 70px;
+    line-height: 70px;
+    text-align: center;
+
 }

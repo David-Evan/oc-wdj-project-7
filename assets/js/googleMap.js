@@ -106,7 +106,7 @@ export class GoogleMap {
 
         marker.addListener('click', ()=> {
             this.map.setCenter(marker.position);
-            this.standManager.showStandDetails(marker.standId);
+            this.standManager.createStandDetailsComponents(marker.standId);
         });
 
         return marker;

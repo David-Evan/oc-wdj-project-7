@@ -1,4 +1,4 @@
-import * as Tools from './tools.js';
+import * as Tools from '../lib/tools.js';
 
 /**
  * Error Manager
