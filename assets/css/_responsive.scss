@@ -49,6 +49,17 @@
     }
 }
 
+@media screen and (max-height: 600px)
+{
+  .station-detail-status{
+    display: none;
+  }
+
+  #standDetailSection{
+      max-height: 322px;
+    }
+}
+
 @media screen and (max-width: 1200px)
 {
   body {
@@ -116,5 +127,33 @@
 {
   #standInfoSection{
       width: 93%;
+  }
+}
+
+@media screen and (max-width: 350px)
+{
+  body {
+  font-size: 0.9em;
+  }
+
+  h1 {
+    font-size: 1.5em;
+   }
+
+  #standDetailSection
+   {
+     flex-direction: column;
+
+    & i {
+    display: none;
+    }
+    & p{
+      margin: 0;
+      text-align : center;
+    }
+  }
+
+  .station-detail-address{
+    display: block;
   }
 }
