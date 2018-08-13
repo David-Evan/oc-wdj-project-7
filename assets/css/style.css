@@ -558,7 +558,7 @@ button:focus, .btn:focus {
   }
 }
 
-@media screen and (max-width: 350px) {
+@media screen and (max-width: 450px) {
   body {
     font-size: 0.9em;
   }
