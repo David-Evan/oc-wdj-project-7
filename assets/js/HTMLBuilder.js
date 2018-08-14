@@ -48,7 +48,7 @@ export class HTMLBuilder{
 
         return   Tools.htmlToElements(
                 '<h2 class="stats-title">Le saviez-vous ?</h2>'+
-                '<p>Vélo\'V à Lyon, c\'est : </p>'+
+                '<p>Vélo\'<strong class="primary-color">V</strong> à Lyon, c\'est : </p>'+
                 '<div class="stats-detail-bike-on-road"><i class="fas fa-road">&nbsp;</i> ' +
                 '<p><strong>'+Tools.numberWithSpaces(stats.bikesOnRoad)+'</strong> Cycliste sur la route </p></p>' +
                 '</div>'+

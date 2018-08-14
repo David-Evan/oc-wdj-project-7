@@ -18,24 +18,24 @@ export const Slideshow =
     slideWidth: '1120px',
     slideHeight: '630px',
     slideChangeDuration: 1000,
-    nextSlideDelay: 7000,
+    nextSlideDelay: 10000,
     imageDirectory : './assets/images/slideshow/',
     enabledKeyboardControls: true,
     slidesCollection : [
         {
             imageURL: 'slide_1.jpg',
-            title: 'Ceci est ma première diapo',
-            textContent: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium, corrupti!'
+            title: "1 - Vérifiez l\'état des stations proche de vous",
+            textContent: 'Vous trouverez des informations sur chaques stations et emplacements disponibles !',
         },
         {
             imageURL: 'slide_2.jpg',
-            title: 'Ceci est ma seconde diapo',
-            textContent: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium, corrupti!'
+            title: '2 - Venez choisir votre vélo à la station',
+            textContent: "Nous sommes désolé si la couleur ne vous plaît pas. Il n'existe qu'en <strong class='primary-color'>rouge</strong>.",
         },
         {
             imageURL: 'slide_3.jpg',
-            title: 'Ceci est ma 3ème diapo',
-            textContent: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium, corrupti!'
+            title: "3 - Il ne vous reste plus qu'a prendre la route !",
+            textContent: 'N\'oubliez pas le casque, et respectez le code de la route <i class="fas fa-smile-wink primary-color"></i>',
         },
     ],
 };
