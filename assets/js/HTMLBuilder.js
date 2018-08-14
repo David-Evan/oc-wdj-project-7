@@ -34,8 +34,14 @@ export class HTMLBuilder{
             '</div>' +
             '<div class="station-detail-booking">';
         if (!haveBookingInStand) {
-            component +=
-                '<button id="bookABikeBtn' + standDetails.number + '" data-stand-name="' + standDetails.name.toLowerCase() + '" data-stand-number="' + standDetails.number + '" class="btn btn-lg">Réserver</button>';
+
+            if (standDetails.available_bikes > 0 && standDetails.status !== 'CLOSED') {
+                component +=
+                    '<button id="bookABikeBtn' + standDetails.number + '" data-stand-name="' + standDetails.name.toLowerCase() + '" data-stand-number="' + standDetails.number + '" class="btn btn-lg">Réserver</button>';
+            }
+            else {
+                component +='<p>Réservation impossible dans cette station.</p>';
+            }
         }
         else {
             component +='<p><strong>Reservation confirmée !</strong></p>';
