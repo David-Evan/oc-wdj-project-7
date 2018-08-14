@@ -55,4 +55,17 @@ export class HTMLBuilder{
         );
     }
 
+
+    static getCurrentBookingComponent(){
+        return  Tools.htmlToElements(
+             ' <h2 class="current-booking-title">Merci pour votre réservation!</h2>'+
+             '<div class="current-booking-message">'+
+                    '<p>Un vélo vous attend :</p>'+
+                '<p id="currentBookingStandName" class="current-booking-stand"></p>'+
+                '<p id="currentBookingExpiration"></p>'+
+             '</div>'+
+             '<div class="current-booking-button">'+
+                '<button id="cancelBooking" class="btn btn-cancel">Annuler</button>'+
+             '</div>');
+    }
 }

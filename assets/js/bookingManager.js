@@ -1,4 +1,5 @@
 import {SignaturePad} from "./modules/signaturePad.js";
+import {HTMLBuilder} from "./HTMLBuilder.js";
 
 /**
  * Booking Manager
@@ -7,10 +8,11 @@ export class BookingManager{
 
     /**
      * Init object properties - config can be used to change default values.
+     * @param effectManager
      * @param config
      */
     initProperties(effectManager, config){
-        this.bookingDuration = config && config.bookingDuration || 0.1; // time in minutes
+        this.bookingDuration = config && config.bookingDuration || 20; // time in minutes
         this.bookingSectionID = config && config.bookingSectionID || '#bookingSection';
 
         this.currentBookingSectionID = config && config.currentBookingSectionID || '#currentBookingSection';
@@ -32,11 +34,16 @@ export class BookingManager{
      */
     constructor(effectManager, config = false){
         this.initProperties(effectManager, config);
+        this.createCurrentBookingComponent();
 
         this.addCancelBookingEventListener();
 
         this.effectManager.hideBookingSection();
         this.effectManager.hideCurrentBookingSection();
+    }
+
+    createCurrentBookingComponent(){
+        $(this.effectManager.idCollection.currentBookingSection).html('').append(HTMLBuilder.getCurrentBookingComponent());
     }
 
     /**
@@ -120,7 +127,6 @@ export class BookingManager{
      * Display a countdown timer.
      * @param deadline {int}.
      * @param bookingSectionID {string}
-     * @param bookingCountDownTimerSpanID {string}
      */
     addCountdownBookingTimer(deadline, bookingSectionID) {
 
@@ -131,7 +137,7 @@ export class BookingManager{
         this.bookingReamingTime = {min: minutes, sec:seconds};
 
         this.countDownTimer = setInterval(() => {
-            document.getElementById('currentBoolingExpiration').innerHTML = 'Il vous reste : ' + '<span class="bookingRemainingTime">'+ this.bookingReamingTime.min + ' min ' + this.bookingReamingTime.sec+' sec </span> pour l\'enfourcher !';
+            $('#currentBookingExpiration').html('Il vous reste : ' + '<span class="bookingRemainingTime">'+ this.bookingReamingTime.min + ' min ' + this.bookingReamingTime.sec+' sec </span> pour l\'enfourcher !');
 
             if(this.bookingReamingTime.sec <= 0){
                 this.bookingReamingTime.sec = 60;
@@ -141,12 +147,13 @@ export class BookingManager{
 
             if (this.bookingReamingTime.min <= 0 && this.bookingReamingTime.sec <= 0) {
                 clearInterval(this.countDownTimer);
-                document.getElementById('currentBookingSection').innerHTML = '<p class="text-center"><strong>Aaaaaw nooo ! </strong><br/><img src="./assets/images/sadness.jpg" alt="Personnage pixar pleurant" /><br/> Votre réservation a expériée.</p>';
+                $(this.effectManager.idCollection.currentBookingSection).html('<p class="text-center"><strong>Aaaaaw nooo ! </strong><br/><img src="./assets/images/sadness.jpg" alt="Personnage pixar pleurant" /><br/> Votre réservation a expériée.</p>');
 
                 this.bikeBooked = false;
                 this.booking = {};
 
                 this.deleteBookingInStorage();
+                this.createCurrentBookingComponent();
             }
         }, 1000);
     }
