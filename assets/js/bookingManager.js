@@ -51,8 +51,9 @@ export class BookingManager{
      * @param standID
      */
     addBookABikeEventListener(standID){
-        const $this = $('#'+standID).on('click', ()=>{
+        const $this = $('#bookABikeBtn'+standID).on('click', ()=>{
 
+            console.log($this);
             if(this.bikeBooked && !confirm('Vous êtes sur le point d\'annuler votre réservation déjà existante. \n\nÊtes vous sûr de vouloir continuer ?'))
                 return;
 
@@ -62,6 +63,8 @@ export class BookingManager{
 
             this.effectManager.showBookingSection();
             this.effectManager.hideCurrentBookingSection();
+
+            $('#bookABikeBtn'+this.booking.standID).remove();
         });
     }
 
@@ -90,7 +93,6 @@ export class BookingManager{
         this.addCountdownBookingTimer((this.booking.date + (this.bookingDuration* 60 * 1000)), 'currentBoolingExpiration');
 
         this.effectManager.bookABikeEffect();
-
         this.saveBookingInStorage();
     }
 

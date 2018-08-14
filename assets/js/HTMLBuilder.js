@@ -8,32 +8,39 @@ export class HTMLBuilder{
     /**
      * Return a HTML Component for stand details. Ready to be insert in DOM
      * @param standDetails
+     * @param haveBookingInStand
      * @return {NodeList}
      */
-    static getStandDetailComponent(standDetails){
+    static getStandDetailComponent(standDetails, haveBookingInStand) {
 
         // Few conditons to beautifull the result
         let standStatus = (standDetails.status === 'OPEN') ? 'Ouvert' : 'Fermé';
         let standAlert = '';
-        if(standDetails.status !== 'CLOSED' && (standDetails.available_bike_stands === 0 || standDetails.available_bikes === 0))
+        if (standDetails.status !== 'CLOSED' && (standDetails.available_bike_stands === 0 || standDetails.available_bikes === 0))
             standAlert = ' carefull';
 
         let component =
-            '<div class="station-detail-status btn '+standDetails.status.toLowerCase()+standAlert+'">'+standStatus+'</div>' +
-            '<h2 class="station-title">'+standDetails.name+'</h2>'+
-            '<div class="station-detail-number">(n°'+standDetails.number+')</div> ' +
+            '<div class="station-detail-status btn ' + standDetails.status.toLowerCase() + standAlert + '">' + standStatus + '</div>' +
+            '<h2 class="station-title">' + standDetails.name + '</h2>' +
+            '<div class="station-detail-number">(n°' + standDetails.number + ')</div> ' +
             '<div class="station-detail-address"><i class="fas fa-map-marker-alt">&nbsp;</i> ' +
-            '<p><adress>'+Tools.formatAddress(standDetails.address)+'</adress></p>' +
+            '<p><adress>' + Tools.formatAddress(standDetails.address) + '</adress></p>' +
             '</div> ' +
             '<div class="station-detail-available-bike-park"><i class="fas fa-parking"></i>' +
-            '<p> <strong>'+standDetails.available_bike_stands+'</strong> Places disponibles</p>' +
+            '<p> <strong>' + standDetails.available_bike_stands + '</strong> Places disponibles</p>' +
             '</div> ' +
             '<div class="station-detail-bike"><i class="fas fa-bicycle"></i>' +
-            '<p><strong>'+standDetails.available_bikes+'</strong> Vélos disponibles</p>' +
+            '<p><strong>' + standDetails.available_bikes + '</strong> Vélos disponibles</p>' +
             '</div>' +
-            '<div class="station-detail-booking">' +
-            '<button id="bookABikeBtn'+standDetails.number+'" data-stand-name="'+standDetails.name.toLowerCase()+'" data-stand-number="'+standDetails.number+'" class="btn btn-lg">Réserver</button>' +
-            '</div>';
+            '<div class="station-detail-booking">';
+        console.log(haveBookingInStand);
+        if (!haveBookingInStand) {
+            component +=
+                '<button id="bookABikeBtn' + standDetails.number + '" data-stand-name="' + standDetails.name.toLowerCase() + '" data-stand-number="' + standDetails.number + '" class="btn btn-lg">Réserver</button>';
+        }
+        else {
+            component +='<p><strong>Reservation confirmée !</strong></p>';
+        }
 
         return Tools.htmlToElements(component);
     }

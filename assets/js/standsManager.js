@@ -37,25 +37,22 @@ export class StandsManager{
         this.createStatsComponent();
     }
 
-    /**
-     * TODO : Remove direct ID
-     * Show single stand details
-     * @param standID {int} - Bike standID
-     */
     createStandDetailsComponents(standID){
         this.effectManager.showStandDetailSection();
 
         // Get this stand details
         let standDetails = this.standsCollection.find( s => s.number === standID);
 
-        // TODO remove direct ID
-        $('#standDetailSection').html('').append(HTMLBuilder.getStandDetailComponent(standDetails));
+        console.log(standID +'--'+ this.bookingManager.booking.standID);
+        let haveBookingInStand = (standID === Number(this.bookingManager.booking.standID));
+
+        $(this.effectManager.idCollection.standDetailSection).html('').append(HTMLBuilder.getStandDetailComponent(standDetails, haveBookingInStand));
 
         // Add effects
         this.effectManager.showStandInfoSection();
         this.effectManager.hideBookingSection();
 
-        this.bookingManager.addBookABikeEventListener('bookABikeBtn'+standDetails.number);
+        this.bookingManager.addBookABikeEventListener(standDetails.number);
     }
 
     /**
