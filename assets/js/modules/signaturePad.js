@@ -15,11 +15,13 @@ export class SignaturePad{
         this.canvasID = null; // ID de <canvas>
         this.canvasElement = null; // Element JS canvas
         this.canvasContext = null; // Canvas context
+        this.canvasIsEmpty = true;
 
         this.signatureLabel = config && config.signatureLabel || "Signature";
         this.btnAcceptLabel = config && config.btnAcceptLabel || "Signer";
         this.btnResetLabel = config && config.btnResetLabel || "Effacer";
         this.signatureTitle = config && config.signatureTitle || "<p><strong>Vous y êtes presque !</strong></p> <p>Il ne vous reste plus qu'à signer !</p> ";
+        this.signatureFail = config && config.signatureFail || "Merci d'apposer votre signature pour confirmer votre réservation";
 
         this.callbackFunction = callbackFunction;
     }
@@ -51,6 +53,9 @@ export class SignaturePad{
     initCanvas(){
         this.canvasElement = document.getElementById(this.canvasID.substring(1));
         this.canvasContext = this.canvasElement.getContext('2d');
+        this.canvasContext.strokeStyle = '#666';
+        this.canvasContext.lineWidth = 2;
+        this.canvasContext.lineJoin = "round";
     }
 
     /**
@@ -115,8 +120,8 @@ export class SignaturePad{
      * @param e Evenement (mousemove)
      */
     paintCanvas(e) {
+        this.canvasIsEmpty = false;
         this.canvasContext.lineTo(e.offsetX, e.offsetY);
-        this.canvasContext.strokeStyle = '#666';
         this.canvasContext.stroke();
     }
 
@@ -127,6 +132,7 @@ export class SignaturePad{
         this.canvasContext.clearRect(0,0,
             this.canvasElement.width,
             this.canvasElement.height);
+        this.canvasIsEmpty = true;
     }
 
     /**
@@ -144,10 +150,11 @@ export class SignaturePad{
      * Exécute la fonction de callback après vérification du contenu.
      */
     validateSignaturePad(){
-
-        this.resetSignaturePad();
-
-        this.callbackFunction();
+        if(!this.canvasIsEmpty){
+            this.resetSignaturePad();
+            this.callbackFunction();
+        }
+        else alert(this.signatureFail);
     }
 
     /*--- Getter / Setter ---*/
