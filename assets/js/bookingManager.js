@@ -53,7 +53,6 @@ export class BookingManager{
     addBookABikeEventListener(standID){
         const $this = $('#bookABikeBtn'+standID).on('click', ()=>{
 
-            console.log($this);
             if(this.bikeBooked && !confirm('Vous êtes sur le point d\'annuler votre réservation déjà existante. \n\nÊtes vous sûr de vouloir continuer ?'))
                 return;
 
@@ -72,7 +71,6 @@ export class BookingManager{
      * Add event listener to "cancel" booking button
      */
     addCancelBookingEventListener() {
-        // TODO : Remove direct ID
         $('#cancelBooking').on('click', () => {
             if(this.bikeBooked && confirm('Êtes vous sûr de vouloir annuler votre réservation ?'))
                 this.cancelBookedBike();
@@ -80,7 +78,6 @@ export class BookingManager{
     }
 
     /**
-     * TODO : Remove direct ID
      * Book a bike
      */
     bookABike(){

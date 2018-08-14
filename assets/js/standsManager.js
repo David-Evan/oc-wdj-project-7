@@ -43,7 +43,6 @@ export class StandsManager{
         // Get this stand details
         let standDetails = this.standsCollection.find( s => s.number === standID);
 
-        console.log(standID +'--'+ this.bookingManager.booking.standID);
         let haveBookingInStand = (standID === Number(this.bookingManager.booking.standID));
 
         $(this.effectManager.idCollection.standDetailSection).html('').append(HTMLBuilder.getStandDetailComponent(standDetails, haveBookingInStand));
@@ -57,7 +56,6 @@ export class StandsManager{
 
     /**
      * Create HTML Stats section.
-     * TODO  Remove direct ID
      */
     createStatsComponent(){
         $('#statsSection').append(
@@ -66,7 +64,6 @@ export class StandsManager{
     }
 
     /**
-     * TODO : load async data
      * load stands from JCDecaux API and push them into standsCollection.
      */
     loadStands() {

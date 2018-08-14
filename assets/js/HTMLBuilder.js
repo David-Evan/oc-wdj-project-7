@@ -33,7 +33,6 @@ export class HTMLBuilder{
             '<p><strong>' + standDetails.available_bikes + '</strong> Vélos disponibles</p>' +
             '</div>' +
             '<div class="station-detail-booking">';
-        console.log(haveBookingInStand);
         if (!haveBookingInStand) {
             component +=
                 '<button id="bookABikeBtn' + standDetails.number + '" data-stand-name="' + standDetails.name.toLowerCase() + '" data-stand-number="' + standDetails.number + '" class="btn btn-lg">Réserver</button>';

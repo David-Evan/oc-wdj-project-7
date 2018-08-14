@@ -41,18 +41,12 @@ export class GoogleMap {
             this.addMapsMarkers();
         }
 
-       this.removeLoadScreen();
-
     }
 
 
     /**
-     * TODO : Transfert it to AppManager
      * Remove load screen
      */
-    removeLoadScreen(){
-        $('#loader').fadeOut(1600, ()=>$('#loader').remove());
-    }
 
     /**
      * get icon for each marker. This method can be used to change marker building conditions.

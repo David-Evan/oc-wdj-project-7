@@ -40,9 +40,16 @@ export class AppManager {
             this.slideshow = new Slideshow('slideshowSection', Config.Slideshow);
             this.effectManager = new EffectManager(this.effectManagerConfig);
             this.googleMap = new GoogleMap(this.effectManager, this.googleMapConfig);
+
+            this.removeLoadScreen();
         }
         catch (e) {
             new ErrorManager(e, Config.Error);
         }
+    }
+
+    removeLoadScreen(){
+        let $this = $('#loader');
+        $this.fadeOut(1600, ()=>$this.remove());
     }
 }
