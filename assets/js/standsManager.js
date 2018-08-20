@@ -101,7 +101,6 @@ export class StandsManager{
         this.stats.bikesOnRoad += (stand.bike_stands - stand.available_bike_stands);
     }
 
-
     /*--- Getter / Setter ---*/
     /**
      * Return Stands stats

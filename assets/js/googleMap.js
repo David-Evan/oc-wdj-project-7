@@ -6,6 +6,7 @@ export class GoogleMap {
 
     /**
      * Init object properties - config can be used to change default values.
+     * @param effectManager
      * @param config
      */
     initProperties(effectManager, config){
@@ -43,14 +44,9 @@ export class GoogleMap {
 
     }
 
-
-    /**
-     * Remove load screen
-     */
-
     /**
      * get icon for each marker. This method can be used to change marker building conditions.
-     * @param {google.maps.marker} - Google map marker
+     * @param {google.maps.marker}- Google map marker
      * @returns {string|*} - return pictures file name
      */
     getIconForMaker(marker) {

@@ -67,7 +67,6 @@ export class HTMLBuilder{
         );
     }
 
-
     static getCurrentBookingComponent(){
         return  Tools.htmlToElements(
              ' <h2 class="current-booking-title">Merci pour votre réservation!</h2>'+
